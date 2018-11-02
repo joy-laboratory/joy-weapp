@@ -1,0 +1,108 @@
+<template>
+  <view className='page'>
+    <view className='doc-body'>
+      <view className='panel'>
+        <view className='panel-title'>数字</view>
+        <view className='panel-content'>
+          <view className='badge-item'>
+            <view className='subitem'>
+              <JoyBadge value='10' maxValue="{{99}}">
+                <view size='small' circle>按钮</view>
+              </JoyBadge>
+            </view>
+            <view className='subitem'>
+              <JoyBadge value='100' maxValue="{{99}}">
+                <view size='small'>按钮</view>
+              </JoyBadge>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view className='panel'>
+        <view className='panel-title'>小红点</view>
+        <view className='panel-content'>
+          <view className='badge-item'>
+            <view className='subitem'>
+              <JoyBadge dot>
+                <view size='small' circle>按钮</view>
+              </JoyBadge>
+            </view>
+            <view className='subitem'>
+              <JoyBadge dot>
+                <view size='small'>按钮</view>
+              </JoyBadge>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view className='panel'>
+        <view className='panel-title'>文本</view>
+        <view className='panel-content'>
+          <view className='badge-item'>
+            <view className='subitem'>
+              <JoyBadge value='NEW'>
+                <view size='small' circle>按钮</view>
+              </JoyBadge>
+            </view>
+            <view className='subitem'>
+              <JoyBadge value='NEW'>
+                <view size='small'>按钮</view>
+              </JoyBadge>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view className='panel'>
+        <view className='panel-title'>省略号</view>
+        <view className='panel-content'>
+          <view className='badge-item'>
+            <view className='subitem'>
+              <JoyBadge value="{{dot}}">
+                <view size='small' circle>按钮</view>
+              </JoyBadge>
+            </view>
+            <view className='subitem'>
+              <JoyBadge value="{{dot}}">
+                <view size='small'>按钮</view>
+              </JoyBadge>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyBadge from '@/components/badge/index'
+export default class BadgePage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Badge 徽标数'
+  }
+  components = {
+    JoyBadge
+  }
+  data = {
+    dot: ''
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40px;
+      }
+    }
+  }
+}
+</style>

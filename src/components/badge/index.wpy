@@ -1,0 +1,88 @@
+<template>
+  <view class="joy-badge-wrap">
+    <slot></slot>
+    <block wx:if="{{dot}}">
+      <text class="joy-badge-dot"></text>
+    </block>
+    <block wx:if="{{count}}">
+      <text class="joy-badge-count {{alone ? 'joy-badge-count-alone' : ''}}">{{finalCount}}</text>
+    </block>
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+export default class JoyBadge extends wepy.component {
+  props = {
+    dot: {
+      type: Boolean,
+      default: false
+    },
+    count: {
+      type: [Number, String],
+      default: 0
+    },
+    overflowCount: {
+      type: [Number, String],
+      default: 99
+    },
+    alone: {
+      type: Boolean,
+      default: false
+    }
+  };
+
+  computed = {
+    finalCount() {
+      return parseInt(this.count) >= parseInt(this.overflowCount)
+        ? `${this.overflowCount}+`
+        : this.count;
+    }
+  };
+}
+</script>
+<style lang="less">
+@import "../../style/theme/default.less";
+.joy-badge-wrap {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .joy-badge-count {
+    position: absolute;
+    transform: translateX(50%);
+    top: 0rpx;
+    right: -13rpx;
+    height: 40rpx;
+    min-width: 40rpx;
+    color: #fff;
+    line-height: 40rpx;
+    text-align: center;
+    font-size: 20rpx;
+    white-space: nowrap;
+    transform-origin: -10% center;
+    z-index: 10;
+    background: @error-color;
+    // box-shadow: 0 4rpx 14rpx -2rpx rgba(236, 63, 59, 0.46);
+    border-radius: 20rpx;
+  }
+  .joy-badge-count-alone {
+    top: auto;
+    display: block;
+    position: relative;
+    transform: translateX(0);
+  }
+  .joy-badge-dot {
+    position: absolute;
+    transform: translateX(-50%);
+    transform-origin: 0 center;
+    top: 10rpx;
+    right: 0rpx;
+    height: 16rpx;
+    width: 16rpx;
+    border-radius: 100%;
+    background: #ff5764;
+    z-index: 10;
+    box-shadow: 0 0 0 1rpx #fff;
+  }
+}
+</style>

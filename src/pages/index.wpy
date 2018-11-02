@@ -11,7 +11,8 @@
           key="{{index}}"
           data-id="{{item.id}}"
           data-name="{{item.title}}"
-          data-list="{{item.subpages}}">
+          data-list="{{item.subpages}}"
+          @tap="goToPanel">
           <view class='module-list-icon'>
             <image src="{{item.icon}}" class='img' mode='widthFix' />
           </view>
@@ -29,7 +30,8 @@
 </template>
 
 <script>
-import wepy from 'wepy';
+import wepy from 'wepy'
+import { constAssetsImg } from '@/constants/index'
 
 export default class Index extends wepy.page {
   config = {
@@ -43,34 +45,49 @@ export default class Index extends wepy.page {
         id: 'View',
         title: '视图',
         content: '包含通告栏、标签、徽标等',
-        icon: ''
+        icon: constAssetsImg.view
       },
       {
         id: 'Action',
         title: '操作反馈',
         content: '包含对话框、进度条、动作面板等',
-        icon: ''
+        icon: constAssetsImg.action
       },
       {
         id: 'Form',
         title: '表单',
         content: '包含输入框、单选框、复选框等',
-        icon: ''
+        icon: constAssetsImg.form
       },
       {
         id: 'Navigation',
         title: '导航',
         content: '包含标签栏、自定义tabBar、分段器等',
-        icon: ''
+        icon: constAssetsImg.nav
+      },
+      {
+        id: 'Other',
+        title: '其他',
+        content: '包含回到顶部、分割线等',
+        icon: constAssetsImg.other
       },
       {
         id: 'Block',
         title: '区块',
         content: '包含消息列表、分享列表、评论等',
-        icon: ''
+        icon: constAssetsImg.block
       }
     ]
-  };
+  }
+
+  methods = {
+    goToPanel(e) {
+      const dataset = e.currentTarget.dataset
+      wx.navigateTo({
+        url: `/pages/panel?id=${dataset.id}`
+      })
+    }
+  }
 }
 </script>
 <style lang='less' scoped>
@@ -136,7 +153,7 @@ export default class Index extends wepy.page {
       align-items: center;
       width: 70rpx;
       height: 70rpx;
-      color: #78a4fa;
+      color: #2d8cf0;
       text-align: center;
       border: 5rpx solid rgba(120, 164, 250, 0.16);
       border-radius: 50%;
@@ -172,7 +189,7 @@ export default class Index extends wepy.page {
       height: 62rpx;
       color: #fff;
       text-align: center;
-      background: #78a4fa;
+      background: #2d8cf0;
       box-shadow: 4rpx 10rpx 30rpx 0 rgba(120, 164, 250, 0.3);
       border-radius: 50%;
     }

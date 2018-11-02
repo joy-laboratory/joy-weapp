@@ -1,0 +1,224 @@
+<template>
+  <view class='page'>
+    <view class='panel-header'>
+      <view class='panel-header-icon'>
+          <image src="{{icon}}" class='img' mode='widthFix' />
+      </view>
+      <view class='panel-header-title'>{{title}}</view>
+    </view>
+    <view class='panel-body'>
+      <view class='component-list'>
+        <repeat for="{{itemList}}" key='index' index='index' item='item'>
+          <view
+            class='component-list-item'
+            key="{{item.id}}"
+            data-id="{{item.id}}"
+            data-parent="{{currentId}}">
+            <text class='name'>{{item.id}} {{item.name}}</text>
+            <text class='at-icon at-icon-chevron-right' />
+          </view>
+        </repeat>  
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import { constAssetsImg } from '@/constants/index'
+
+export default class PanelPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Joy weapp'
+  };
+  components = {};
+
+  data = {
+    title: '',
+    icon: '',
+    itemList: [],
+    panelNames: {
+      View: {
+        name: '视图',
+        icon: constAssetsImg.view
+      },
+      Action: {
+        name: '操作反馈',
+        icon: constAssetsImg.action
+      },
+      Form: {
+        name: '表单',
+        icon: constAssetsImg.form
+      },
+      Navigation: {
+        name: '导航',
+        icon: constAssetsImg.nav
+      },
+      Other: {
+        name: '其他',
+        icon: constAssetsImg.other
+      },
+      Block: {
+        name: '区块',
+        icon: constAssetsImg.block
+      }
+    },
+    list: {
+      View: [
+        {
+          id: 'Avatar',
+          name: '头像'
+        },
+        {
+          id: 'Badge',
+          name: '徽标'
+        },
+        {
+          id: 'NoticeBar',
+          name: '通告栏'
+        },
+        {
+          id: 'Tag',
+          name: '标签'
+        }
+      ],
+      Action: [
+        {
+          id: 'Action-Sheet',
+          name: '动作面板'
+        },
+        {
+          id: 'Modal',
+          name: '模态框'
+        },
+        {
+          id: 'Progress',
+          name: '进度条'
+        },
+        {
+          id: 'Toast',
+          name: '轻提示'
+        },
+        {
+          id: 'Swipe-Action',
+          name: '滑动操作'
+        }
+      ],
+      Form: [
+        {
+          id: 'Radio',
+          name: '单选框'
+        },
+        {
+          id: 'Checkbox',
+          name: '复选框'
+        },
+        {
+          id: 'Textarea',
+          name: '多行文本框'
+        }
+      ],
+      Navigation: [
+        {
+          id: 'NavBar',
+          name: '导航栏'
+        },
+        {
+          id: 'TabBar',
+          name: '标签栏'
+        },
+        {
+          id: 'Tabs',
+          name: '标签页'
+        }
+      ],
+      Other: [
+        {
+          id: 'Backtop',
+          name: '回到顶部'
+        },
+        {
+          id: 'Divider',
+          name: '分割线'
+        }
+      ],
+      Block: [
+        {
+          id: 'MessageList',
+          name: '消息列表'
+        },
+        {
+          id: 'Diary',
+          name: '分享列表'
+        },
+        {
+          id: 'Comment',
+          name: '评论'
+        }
+      ]
+    }
+  }
+  onLoad(opt) {
+    const { id } = opt
+    this.itemList = this.list[id]
+    this.title = this.panelNames[id].name
+    this.icon = this.panelNames[id].icon
+    this.$apply()
+  }
+}
+</script>
+<style lang='less' scoped>
+.panel-header {
+  display: flex;
+  align-items: center;
+  padding: 60rpx;
+  height: 180rpx;
+
+  &-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80rpx;
+    height: 80rpx;
+    color: #2d8cf0;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 20rpx 80rpx 0 rgba(0, 0, 0, 0.11);
+    border-radius: 10rpx;
+
+    .img {
+      width: 36rpx;
+      height: 36rpx;
+    }
+  }
+
+  &-title {
+    margin-left: 32rpx;
+    color: #2d8cf0;
+    font-size: 36rpx;
+    font-weight: bold;
+  }
+}
+
+.panel-body {
+  min-height: calc(100vh);
+  background: #fff;
+  box-shadow: 0 26rpx 163rpx 0 rgba(0, 0, 0, 0.11);
+}
+
+.component-list {
+  margin: 20rpx 60rpx 40rpx;
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120rpx;
+
+    .name {
+      color: #1d1d26;
+      font-size: 28rpx;
+    }
+  }
+}
+</style>
