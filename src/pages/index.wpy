@@ -1,7 +1,7 @@
 <template>
   <view class='page page-index'>
     <view class='logo'>
-      <image src='' class='img' mode='widthFix' />
+      <image src="{{logo}}" class='img' mode='widthFix' />
     </view>
     <view class='page-title'>Joy-weapp</view>
     <view class='module-list'>
@@ -40,6 +40,7 @@ export default class Index extends wepy.page {
   components = {};
 
   data = {
+    logo: constAssetsImg.logo,
     list: [
       {
         id: 'View',
