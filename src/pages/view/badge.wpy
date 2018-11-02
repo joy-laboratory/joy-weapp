@@ -1,73 +1,37 @@
 <template>
-  <view className='page'>
-    <view className='doc-body'>
-      <view className='panel'>
-        <view className='panel-title'>数字</view>
-        <view className='panel-content'>
-          <view className='badge-item'>
-            <view className='subitem'>
-              <JoyBadge value='10' maxValue="{{99}}">
-                <view size='small' circle>按钮</view>
-              </JoyBadge>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>数字</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyBadge1 count='10'>
+                <view class="view-wrap">文字</view>
+              </JoyBadge1>
             </view>
-            <view className='subitem'>
-              <JoyBadge value='100' maxValue="{{99}}">
-                <view size='small'>按钮</view>
-              </JoyBadge>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view className='panel'>
-        <view className='panel-title'>小红点</view>
-        <view className='panel-content'>
-          <view className='badge-item'>
-            <view className='subitem'>
-              <JoyBadge dot>
-                <view size='small' circle>按钮</view>
-              </JoyBadge>
-            </view>
-            <view className='subitem'>
-              <JoyBadge dot>
-                <view size='small'>按钮</view>
-              </JoyBadge>
+            <view class='subitem'>
+              <JoyBadge2 count='100'>
+                <view class="view-wrap">文字</view>
+              </JoyBadge2>
             </view>
           </view>
         </view>
       </view>
 
-      <view className='panel'>
-        <view className='panel-title'>文本</view>
-        <view className='panel-content'>
-          <view className='badge-item'>
-            <view className='subitem'>
-              <JoyBadge value='NEW'>
-                <view size='small' circle>按钮</view>
-              </JoyBadge>
+      <view class='panel'>
+        <view class='panel-title'>小红点</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyBadge3 :dot.sync="dot">
+                <view class="view-wrap">文字</view>
+              </JoyBadge3>
             </view>
-            <view className='subitem'>
-              <JoyBadge value='NEW'>
-                <view size='small'>按钮</view>
-              </JoyBadge>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view className='panel'>
-        <view className='panel-title'>省略号</view>
-        <view className='panel-content'>
-          <view className='badge-item'>
-            <view className='subitem'>
-              <JoyBadge value="{{dot}}">
-                <view size='small' circle>按钮</view>
-              </JoyBadge>
-            </view>
-            <view className='subitem'>
-              <JoyBadge value="{{dot}}">
-                <view size='small'>按钮</view>
-              </JoyBadge>
+            <view class='subitem'>
+              <JoyBadge4 :dot.sync="dot">
+                <view class="view-wrap">文字</view>
+              </JoyBadge4>
             </view>
           </view>
         </view>
@@ -83,24 +47,35 @@ export default class BadgePage extends wepy.page {
     navigationBarTitleText: 'Badge 徽标数'
   }
   components = {
-    JoyBadge
+    JoyBadge1: JoyBadge,
+    JoyBadge2: JoyBadge,
+    JoyBadge3: JoyBadge,
+    JoyBadge4: JoyBadge
   }
   data = {
-    dot: ''
+    dot: true
   }
 }
 </script>
 <style lang="less" scoped>
 .page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
   .panel-content {
     .badge-item {
-      margin-bottom: 20px;
+      margin-bottom: 20rpx;
       &:last-child {
         margin-bottom: 0;
       }
       .subitem {
         display: inline-block;
-        margin-left: 40px;
+        margin-left: 40rpx;
       }
     }
   }

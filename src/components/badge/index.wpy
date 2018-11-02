@@ -46,12 +46,12 @@ export default class JoyBadge extends wepy.component {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-
+  font-size: 0;
   .joy-badge-count {
     position: absolute;
     transform: translateX(50%);
-    top: 0rpx;
-    right: -13rpx;
+    top:-17rpx;
+    right:-17rpx;
     height: 40rpx;
     min-width: 40rpx;
     color: #fff;
@@ -75,8 +75,8 @@ export default class JoyBadge extends wepy.component {
     position: absolute;
     transform: translateX(-50%);
     transform-origin: 0 center;
-    top: 10rpx;
-    right: 0rpx;
+    top:0rpx;
+    right:-24rpx;
     height: 16rpx;
     width: 16rpx;
     border-radius: 100%;

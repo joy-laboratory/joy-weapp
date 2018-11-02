@@ -13,7 +13,7 @@
             class='component-list-item'
             key="{{item.id}}"
             data-id="{{item.id}}"
-            data-parent="{{currentId}}">
+            @tap="goToDetail">
             <text class='name'>{{item.id}} {{item.name}}</text>
             <text class='at-icon at-icon-chevron-right' />
           </view>
@@ -158,8 +158,21 @@ export default class PanelPage extends wepy.page {
       ]
     }
   }
+
+  methods = {
+    goToDetail(e) {
+      const dataset = e.currentTarget.dataset
+      const parentId = this.parentId.toLowerCase()
+      const id = dataset.id.toLowerCase()
+      wx.navigateTo({
+        url: `/pages/${parentId}/${id}`
+      })
+    }
+  }
+
   onLoad(opt) {
     const { id } = opt
+    this.parentId = id
     this.itemList = this.list[id]
     this.title = this.panelNames[id].name
     this.icon = this.panelNames[id].icon
