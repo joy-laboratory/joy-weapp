@@ -1,0 +1,105 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyAvatar1 src='../../assets/images/avatar.png'></JoyAvatar1>
+            </view>
+            <view class='subitem'>
+              <JoyAvatar2 src='../../assets/images/avatar.png' shape='circle'></JoyAvatar2>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='panel'>
+        <view class='panel-title'>大小</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyAvatar5 src="../../assets/images/avatar.png" shape='circle'></JoyAvatar5>
+            </view>
+            <view class='subitem'>
+              <JoyAvatar6 src="../../assets/images/avatar.png" shape='circle' size="small"></JoyAvatar6>
+            </view>
+            <view class='subitem'>
+              <JoyAvatar7 src="../../assets/images/avatar.png"></JoyAvatar7>
+            </view>
+            <view class='subitem'>
+              <JoyAvatar8 src="../../assets/images/avatar.png" size="small"></JoyAvatar8>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='panel'>
+        <view class='panel-title'>消息数</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyBadge1 :dot.sync="dot">
+                <JoyAvatar3 src="../../assets/images/avatar.png" shape='circle'></JoyAvatar3>
+              </JoyBadge1>
+            </view>
+            <view class='subitem'>
+              <JoyBadge2 count='10'>
+                <JoyAvatar4 src="../../assets/images/avatar.png" ></JoyAvatar4>
+              </JoyBadge2>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyAvatar from '@/components/avatar/index'
+import JoyBadge from '@/components/badge/index'
+export default class BadgePage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Badge 徽标数'
+  }
+  components = {
+    JoyAvatar1: JoyAvatar,
+    JoyAvatar2: JoyAvatar,
+    JoyBadge1: JoyBadge,
+    JoyBadge2: JoyBadge,
+    JoyAvatar3: JoyAvatar,
+    JoyAvatar4: JoyAvatar,
+    JoyAvatar5: JoyAvatar,
+    JoyAvatar6: JoyAvatar,
+    JoyAvatar7: JoyAvatar,
+    JoyAvatar8: JoyAvatar
+  }
+  data = {
+    dot: true,
+    avatar: '../../assets/images/avatar.png'
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+}
+</style>

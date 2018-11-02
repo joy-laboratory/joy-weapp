@@ -3,7 +3,12 @@ import wepy from 'wepy';
 import 'wepy-async-function';
 export default class extends wepy.app {
   config = {
-    pages: ['pages/index', 'pages/panel', 'pages/view/badge'],
+    pages: [
+      'pages/index', 
+      'pages/panel',
+      'pages/view/badge',
+      'pages/view/avatar'
+    ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',

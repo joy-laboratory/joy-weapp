@@ -40,7 +40,7 @@ export default class JoyBadge extends wepy.component {
   };
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @import "../../style/theme/default.less";
 .joy-badge-wrap {
   position: relative;

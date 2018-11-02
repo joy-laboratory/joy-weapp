@@ -1,0 +1,42 @@
+<template>
+  <view class="joy-avatar-wrap {{size}}">
+    <image class="{{shape}} avatar-img" src="{{src}}" />
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class JoyAvatar extends wepy.component {
+  props = {
+    src: {
+      type: String,
+      default: ''
+    },
+    shape: {
+      type: String,
+      default: 'square'
+    },
+    size: {
+      type: String,
+      default: 'default'
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+@import "../../style/theme/default.less";
+.joy-avatar-wrap {
+  .avatar-img {
+    width:@avatar-normal;
+    height:@avatar-normal;
+  }
+  .circle {
+    border-radius: @avatar-normal;
+  }
+}
+.joy-avatar-wrap.small {
+  .avatar-img {
+    width:@avatar-small;
+    height:@avatar-small;
+  }
+}
+</style>
