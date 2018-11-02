@@ -6,8 +6,8 @@
 
 #### View 视图（包含通告栏、标签、徽标等）
 
-- [ ] Avatar 头像
-- [ ] Badge 徽标
+- [x] Avatar 头像
+- [x] Badge 徽标
 - [ ] NoticeBar 通告栏
 - [ ] Tag 标签
 
