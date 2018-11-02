@@ -1,36 +1,254 @@
 <template>
-  <view class="container">
-    
+  <view class='page page-index'>
+    <view class='logo'>
+      <image src='' class='img' mode='widthFix' />
+    </view>
+    <view class='page-title'>Joy-weapp</view>
+    <view class='module-list'>
+      <repeat for="{{list}}" key='index' index='index' item='item'>
+        <view
+          class='module-list-item'
+          key="{{index}}"
+          data-id="{{item.id}}"
+          data-name="{{item.title}}"
+          data-list="{{item.subpages}}">
+          <view class='module-list-icon'>
+            <image src="{{item.icon}}" class='img' mode='widthFix' />
+          </view>
+          <view class='module-list-info'>
+            <view class='title'>{{item.title}}</view>
+            <view class='content'>{{item.content}}</view>
+          </view>
+          <view class='module-list-arrow'>
+            <text class='at-icon at-icon-chevron-right'></text>
+          </view>
+        </view>
+      </repeat>
+    </view>
   </view>
 </template>
 
 <script>
-  import wepy from 'wepy'
+import wepy from 'wepy';
 
-  export default class Index extends wepy.page {
-    config = {
-      navigationBarTitleText: '首页'
-    }
-    components = {
-    }
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '首页'
+  };
+  components = {};
 
-    data = {
-    }
-
-    computed = {
-    }
-
-    methods = {
-    }
-
-    events = {
-    }
-
-    onLoad() {
-    }
-  }
+  data = {
+    list: [
+      {
+        id: 'View',
+        title: '视图',
+        content: '包含通告栏、标签、徽标等',
+        icon: ''
+      },
+      {
+        id: 'Action',
+        title: '操作反馈',
+        content: '包含对话框、进度条、动作面板等',
+        icon: ''
+      },
+      {
+        id: 'Form',
+        title: '表单',
+        content: '包含输入框、单选框、复选框等',
+        icon: ''
+      },
+      {
+        id: 'Navigation',
+        title: '导航',
+        content: '包含标签栏、自定义tabBar、分段器等',
+        icon: ''
+      },
+      {
+        id: 'Block',
+        title: '区块',
+        content: '包含消息列表、分享列表、评论等',
+        icon: ''
+      }
+    ]
+  };
+}
 </script>
-<style lang="less" scoped>
-  .container {
+<style lang='less' scoped>
+.page {
+  position: relative;
+  background-color: #f8f8f8;
+
+  view {
+    box-sizing: border-box;
   }
+}
+
+.page-index {
+  padding-top: 60rpx;
+  padding-bottom: 100rpx;
+
+  .logo {
+    margin: 0 auto;
+    margin-top: 60rpx;
+    font-size: 0;
+    text-align: center;
+
+    .img {
+      width: 264rpx;
+      height: 180rpx;
+    }
+  }
+
+  .page-title {
+    margin-top: 24rpx;
+    color: #333;
+    font-size: 36rpx;
+    text-align: center;
+  }
+
+  .module-list {
+    margin-top: 72rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-item {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 40rpx;
+      padding: 0 30rpx;
+      width: 90%;
+      height: 144rpx;
+      background: #fff;
+      box-shadow: 0 8rpx 40rpx 0 rgba(0, 0, 0, 0.04);
+      border-radius: 10rpx;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70rpx;
+      height: 70rpx;
+      color: #78a4fa;
+      text-align: center;
+      border: 5rpx solid rgba(120, 164, 250, 0.16);
+      border-radius: 50%;
+
+      .img {
+        width: 30rpx;
+        height: 30rpx;
+      }
+    }
+
+    &-info {
+      flex: 1;
+      text-align: left;
+      margin-left: 24rpx;
+
+      .title {
+        color: #6a6a77;
+        font-size: 28rpx;
+        font-weight: bold;
+      }
+
+      .content {
+        color: #88889c;
+        font-size: 22rpx;
+      }
+    }
+
+    &-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 62rpx;
+      height: 62rpx;
+      color: #fff;
+      text-align: center;
+      background: #78a4fa;
+      box-shadow: 4rpx 10rpx 30rpx 0 rgba(120, 164, 250, 0.3);
+      border-radius: 50%;
+    }
+  }
+}
+
+.page-body {
+  padding: 40rpx;
+}
+
+.component-group {
+  font-size: 32rpx;
+}
+
+.group-item {
+  padding: 0 30rpx;
+  margin: 20rpx 0;
+  background-color: #fff;
+  border-radius: 4rpx;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.group-info {
+  padding: 30rpx 0;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s;
+
+  &-title {
+    opacity: 0.5;
+  }
+}
+
+.group-list {
+  font-size: 28rpx;
+
+  .list-component {
+    padding: 20rpx 0;
+    position: relative;
+    align-items: center;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 1rpx;
+      border-top: 1rpx solid #d8d8d8;
+      color: #d8d8d8;
+    }
+
+    &:first-child::before {
+      display: none;
+    }
+
+    &-info {
+      width: 100%;
+    }
+
+    &-arrow {
+      display: inline-block;
+      height: 18rpx;
+      width: 18rpx;
+      border-width: 2rpx 2rpx 0 0;
+      border-color: #888;
+      border-style: solid;
+      transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0) translate(-50%);
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+  }
+}
 </style>
