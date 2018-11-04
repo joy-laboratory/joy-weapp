@@ -13,7 +13,7 @@
 
 #### Action 操作反馈（包含对话框、进度条、动作面板等）
 
-- [ ] Action-Sheet 动作面板
+- [x] Action-Sheet 动作面板
 - [ ] Modal 模态框
 - [ ] Progress 进度条
 - [ ] Toast 轻提示

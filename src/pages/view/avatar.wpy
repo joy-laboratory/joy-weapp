@@ -57,9 +57,9 @@
 import wepy from 'wepy'
 import JoyAvatar from '@/components/avatar/index'
 import JoyBadge from '@/components/badge/index'
-export default class BadgePage extends wepy.page {
+export default class AvatarPage extends wepy.page {
   config = {
-    navigationBarTitleText: 'Badge 徽标数'
+    navigationBarTitleText: 'Avatar 头像'
   }
   components = {
     JoyAvatar1: JoyAvatar,

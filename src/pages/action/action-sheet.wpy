@@ -1,0 +1,83 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <view class="basic-action" @tap="basicClick">点我弹出</view>
+          <JoyActionSheet1 :show.sync="actionShow">
+            <view class="action-list">
+              <view class="action-reply action-item">回复</view>
+              <view class="action-del action-item">删除</view>
+            </view>
+          </JoyActionSheet1>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyActionSheet from '@/components/action-sheet/action-sheet'
+export default class ActionSheetPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'ActionSheet 动作面板'
+  }
+  components = {
+    JoyActionSheet1: JoyActionSheet
+  }
+  data = {
+    actionShow: false
+  }
+  methods = {
+    basicClick() {
+      this.actionShow = true
+      this.$apply()
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+  .basic-action {
+    font-size: 30rpx;
+    padding: 5rpx 10rpx;
+  }
+  .action-list {
+    .action-item {
+      font-size:36rpx;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(0,0,0,1);
+      height:100rpx;
+      background:rgba(255,255,255,1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .action-del {
+      color:rgba(230,67,64,1);
+    }
+  }
+}
+</style>

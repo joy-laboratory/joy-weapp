@@ -1,0 +1,91 @@
+<template>
+  <view class="joy-action-sheet-wrap {{ show ? 'joy-action-sheet-show' : '' }}">
+    <view class="joy-action-sheet-mask" style="height: {{actionHeight + 'px'}}" @tap="clickMask"></view>
+    <view class="joy-action-sheet-con">
+      <slot></slot>
+      <view class="joy-action-sheet-cancel" @tap="clickMask">
+        取消
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+
+export default class JoyActionSheet extends wepy.component {
+  props = {
+    show: {
+      type: Boolean,
+      value: false,
+      twoWay: true
+    }
+  };
+
+  data = {
+    show: false,
+    actionHeight: ''
+  };
+
+  onLoad() {
+    const res = wx.getSystemInfoSync();
+    this.actionHeight = res.screenHeight;
+    this.$apply();
+  }
+
+  methods = {
+    clickMask() {
+      this.show = false;
+    }
+  };
+}
+</script>
+<style lang="less" scoped>
+.joy-action-sheet-wrap {
+  .joy-action-sheet-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+  .joy-action-sheet-con {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    transform: translateY(50%);
+    transform-origin: center;
+    transition: all 0.3s ease;
+    z-index: 11;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .joy-action-sheet-cancel {
+    transform: translateY(0);
+    height: 100rpx;
+    background: rgba(255, 255, 255, 1);
+    border-top: 12rpx solid rgba(205, 205, 209, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+  }
+}
+.joy-action-sheet-show {
+  .joy-action-sheet-mask {
+    display: block;
+  }
+  .joy-action-sheet-con {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+</style>
