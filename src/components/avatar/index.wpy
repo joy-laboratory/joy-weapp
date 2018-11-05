@@ -39,4 +39,10 @@ export default class JoyAvatar extends wepy.component {
     height:@avatar-small;
   }
 }
+.joy-avatar-wrap.middle {
+  .avatar-img {
+    width:@avatar-middle;
+    height:@avatar-middle;
+  }
+}
 </style>

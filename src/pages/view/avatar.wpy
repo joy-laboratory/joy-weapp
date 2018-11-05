@@ -22,13 +22,19 @@
               <JoyAvatar5 src="../../assets/images/avatar.png" shape='circle'></JoyAvatar5>
             </view>
             <view class='subitem'>
-              <JoyAvatar6 src="../../assets/images/avatar.png" shape='circle' size="small"></JoyAvatar6>
+              <JoyAvatar6 src="../../assets/images/avatar.png" shape='circle' size="middle"></JoyAvatar6>
             </view>
             <view class='subitem'>
-              <JoyAvatar7 src="../../assets/images/avatar.png"></JoyAvatar7>
+              <JoyAvatar7 src="../../assets/images/avatar.png" shape='circle' size="small"></JoyAvatar7>
             </view>
             <view class='subitem'>
-              <JoyAvatar8 src="../../assets/images/avatar.png" size="small"></JoyAvatar8>
+              <JoyAvatar8 src="../../assets/images/avatar.png"></JoyAvatar8>
+            </view>
+            <view class='subitem'>
+              <JoyAvatar9 src="../../assets/images/avatar.png" size="middle"></JoyAvatar9>
+            </view>
+            <view class='subitem'>
+              <JoyAvatar10 src="../../assets/images/avatar.png" size="small"></JoyAvatar10>
             </view>
           </view>
         </view>
@@ -71,7 +77,9 @@ export default class AvatarPage extends wepy.page {
     JoyAvatar5: JoyAvatar,
     JoyAvatar6: JoyAvatar,
     JoyAvatar7: JoyAvatar,
-    JoyAvatar8: JoyAvatar
+    JoyAvatar8: JoyAvatar,
+    JoyAvatar9: JoyAvatar,
+    JoyAvatar10: JoyAvatar
   }
   data = {
     dot: true,
