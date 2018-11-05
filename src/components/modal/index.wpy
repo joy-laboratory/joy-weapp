@@ -1,7 +1,8 @@
 <template>
-  <view class="modal-wrapper" wx:if="{{modalShow}}">
+  <view class="modal-wrapper" hidden="{{!show}}">
     <view class="{{config.mask? 'mask':''}}" @tap="clickMask"></view>
     <view class="modal">
+      <view class="h2" hidden="{{!title}}">{{title}}</view>
       <view class="content">
         <slot name="content"></slot>
       </view>
@@ -21,17 +22,21 @@ import wepy from 'wepy'
 
 export default class JoyModal extends wepy.component {
   props = {
-    modalShow: {
+    show: {
       type: Boolean,
       twoWay: true
     },
     config: {
       type: Object
+    },
+    title: {
+      type: String,
+      default: ''
     }
   };
   methods = {
     clickMask: () => {
-      this.modalShow = false;
+      this.show = false;
     },
     clickBtn1: () => {
       this.config.btns[0].callback();
@@ -82,8 +87,15 @@ export default class JoyModal extends wepy.component {
     transform: translateX(-50%);
     right: 0;
     top: 400rpx;
+    .h2 {
+      margin-top: 40rpx;
+      font-size:32rpx;
+      font-family:PingFangSC-Medium;
+      font-weight:500;
+      color:rgba(52,52,52,1);
+      text-align: center;
+    }
     .content {
-      min-height: 172rpx;
       padding: 40rpx;
       font-size: 32rpx;
       letter-spacing: 3rpx;

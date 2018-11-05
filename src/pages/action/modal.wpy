@@ -5,11 +5,37 @@
         <view class='panel-title'>基本</view>
         <view class='panel-content'>
           <view class="basic-action" @tap="basicClick">点我弹出</view>
-          <JoyModal1 :modalShow.sync="modal1Show" :config.sync="modal1Config">
+          <JoyModal1 
+            :show.sync="modal1Show" 
+            :config.sync="modal1Config"
+            :title.sync="modal1Title">
             <view slot="content">
               <view>自定义内容</view>
             </view>
           </JoyModal1>
+        </view>
+      </view>
+      <view class='panel'>
+        <view class='panel-title'>自定义</view>
+        <view class='panel-content'>
+          <view class="panel-item">
+            <view class="basic-action" @tap="basicClick2">不带title</view>
+            <view class="basic-action" @tap="basicClick3">一个按钮</view>
+          </view>
+          <JoyModal2
+            :show.sync="modal2Show" 
+            :config.sync="modal2Config">
+            <view slot="content">
+              <view>自定义内容</view>
+            </view>
+          </JoyModal2>
+          <JoyModal3
+            :show.sync="modal3Show" 
+            :config.sync="modal3Config">
+            <view slot="content">
+              <view>自定义内容</view>
+            </view>
+          </JoyModal3>
         </view>
       </view>
     </view>
@@ -23,10 +49,13 @@ export default class ActionSheetPage extends wepy.page {
     navigationBarTitleText: 'Modal 模态框'
   };
   components = {
-    JoyModal1: JoyModal
+    JoyModal1: JoyModal,
+    JoyModal2: JoyModal,
+    JoyModal3: JoyModal
   };
   data = {
     modal1Show: false,
+    modal1Title: '我是title',
     modal1Config: {
       mask: true,
       btns: [
@@ -55,12 +84,68 @@ export default class ActionSheetPage extends wepy.page {
           }
         }
       ]
+    },
+    modal2Show: false,
+    modal2Config: {
+      mask: true,
+      btns: [
+        {
+          text: '取消',
+          callback: () => {
+            wx.showToast({
+              title: '点击了取消',
+              success: () => {
+                this.modal2Show = false
+                this.$apply()
+              }
+            })
+          }
+        },
+        {
+          text: '确定',
+          callback: () => {
+            wx.showToast({
+              title: '点击了确定',
+              success: () => {
+                this.modal2Show = false
+                this.$apply()
+              }
+            })
+          }
+        }
+      ]
+    },
+    modal3Show: false,
+    modal3Config: {
+      mask: true,
+      btns: [
+        {
+          text: '确定',
+          callback: () => {
+            wx.showToast({
+              title: '点击了确定',
+              success: () => {
+                this.modal3Show = false
+                this.$apply()
+              }
+            })
+          }
+        }
+      ]
     }
   }
 
   methods = {
     basicClick() {
       this.modal1Show = true
+      this.$apply()
+    },
+    basicClick2() {
+      this.modal2Show = true
+      this.$apply()
+    },
+    basicClick3() {
+      this.modal3Show = true
       this.$apply()
     }
   };
@@ -88,7 +173,11 @@ export default class ActionSheetPage extends wepy.page {
       }
     }
   }
+  .panel-item {
+    display: flex;
+  }
   .basic-action {
+    margin: 0 20rpx;
     font-size: 30rpx;
     padding: 5rpx 10rpx;
   }
