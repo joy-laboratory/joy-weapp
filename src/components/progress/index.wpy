@@ -42,7 +42,7 @@ export default class JoyProgress extends wepy.component {
   display: flex;
   align-items: center;
   .bar{
-    width: 434rpx;
+    width: 100%;
     .bar-inner{
       height:20rpx;
       border-radius:18rpx;
