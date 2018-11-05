@@ -1,0 +1,96 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <view class="basic-action" @tap="basicClick">点我弹出</view>
+          <JoyModal1 :modalShow.sync="modal1Show" :config.sync="modal1Config">
+            <view slot="content">
+              <view>自定义内容</view>
+            </view>
+          </JoyModal1>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+import JoyModal from '@/components/modal/index';
+export default class ActionSheetPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Modal 模态框'
+  };
+  components = {
+    JoyModal1: JoyModal
+  };
+  data = {
+    modal1Show: false,
+    modal1Config: {
+      mask: true,
+      btns: [
+        {
+          text: '取消',
+          callback: () => {
+            wx.showToast({
+              title: '点击了取消',
+              success: () => {
+                this.modal1Show = false
+                this.$apply()
+              }
+            })
+          }
+        },
+        {
+          text: '确定',
+          callback: () => {
+            wx.showToast({
+              title: '点击了确定',
+              success: () => {
+                this.modal1Show = false
+                this.$apply()
+              }
+            })
+          }
+        }
+      ]
+    }
+  }
+
+  methods = {
+    basicClick() {
+      this.modal1Show = true
+      this.$apply()
+    }
+  };
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 38rpx;
+    font-weight: 600;
+    color: #2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+  .basic-action {
+    font-size: 30rpx;
+    padding: 5rpx 10rpx;
+  }
+}
+</style>

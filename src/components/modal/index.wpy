@@ -1,0 +1,134 @@
+<template>
+  <view class="modal-wrapper" wx:if="{{modalShow}}">
+    <view class="{{config.mask? 'mask':''}}" @tap="clickMask"></view>
+    <view class="modal">
+      <view class="content">
+        <slot name="content"></slot>
+      </view>
+      <view class="btns-wrapper" wx:if="{{config.btns.length>1}}">
+        <view class="btn" @tap="clickBtn1">{{config.btns[0].text}}</view>
+        <view class="btn" @tap="clickBtn2">{{config.btns[1].text}}</view>
+      </view>
+      <view class="btn-wrapper" wx:else>
+        <view class="btn" @tap="clickBtn1">{{config.btns[0].text}}</view>
+      </view>
+    </view>
+  </view>
+
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class JoyModal extends wepy.component {
+  props = {
+    modalShow: {
+      type: Boolean,
+      twoWay: true
+    },
+    config: {
+      type: Object
+    }
+  };
+  methods = {
+    clickMask: () => {
+      this.modalShow = false;
+    },
+    clickBtn1: () => {
+      this.config.btns[0].callback();
+    },
+    clickBtn2: () => {
+      this.config.btns[1].callback();
+    }
+  }
+}
+</script>
+<style lang="less">
+@import "../../style/theme/default.less";
+
+.modal-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  .mask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 1);
+    opacity: 0.6;
+  }
+  .modal {
+    width: 630rpx;
+    background: #ffffff;
+    border-radius: 16rpx;
+    overflow: hidden;
+    align-content: center;
+    z-index: 1000;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    right: 0;
+    top: 400rpx;
+    .content {
+      min-height: 172rpx;
+      padding: 40rpx;
+      font-size: 32rpx;
+      letter-spacing: 3rpx;
+      font-family: PingFangSC-Medium;
+      color: rgba(62, 62, 62, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .btns-wrapper {
+      width: 100%;
+      height: 90rpx;
+      line-height: 90rpx;
+      border-top: 1rpx solid rgb(250, 250, 250);
+      .btn {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        font-size: 32rpx;
+        color: #727272;
+        text-align: center;
+        &:nth-child(2) {
+          color: #ffffff;
+          background-color: @primary-color;
+        }
+      }
+    }
+    .btn-wrapper {
+      width: 100%;
+      border-top: 1rpx solid rgb(250, 250, 250);
+      text-align: center;
+      padding: 24rpx 0;
+      .btn {
+        display: inline-block;
+        width: 260rpx;
+        height: 80rpx;
+        line-height: 80rpx;
+        font-size: 32rpx;
+        text-align: center;
+        letter-spacing: 3rpx;
+        color: #ffffff;
+        background-color: @primary-color;
+        border-radius: 8rpx;
+      }
+    }
+  }
+}
+</style>

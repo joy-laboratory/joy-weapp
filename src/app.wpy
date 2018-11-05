@@ -8,7 +8,8 @@ export default class extends wepy.app {
       'pages/panel',
       'pages/view/badge',
       'pages/view/avatar',
-      'pages/action/action-sheet'
+      'pages/action/action-sheet',
+      'pages/action/modal'
     ],
     window: {
       backgroundTextStyle: 'light',

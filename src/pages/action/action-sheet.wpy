@@ -13,7 +13,7 @@
 </template>
 <script>
 import wepy from 'wepy'
-import JoyActionSheet from '@/components/action-sheet/action-sheet'
+import JoyActionSheet from '@/components/action-sheet/index'
 export default class ActionSheetPage extends wepy.page {
   config = {
     navigationBarTitleText: 'ActionSheet 动作面板'
