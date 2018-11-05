@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -45,7 +45,13 @@
 				{
 					"id": -1,
 					"name": "模态框",
-					"pathName": "pages/action/modal"
+					"pathName": "pages/action/modal",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "进度条",
+					"pathName": "pages/action/progress"
 				}
 			]
 		}

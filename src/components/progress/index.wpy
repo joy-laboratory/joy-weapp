@@ -1,0 +1,72 @@
+<template>
+  <view class="joy-progress-wrap">
+    <view class="bar">
+      <view class="{{classes}}" style="width: {{cwidth}}"></view>
+    </view>
+    <view class="bar-txt" hidden="{{hideInfo}}">{{cwidth}}</view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class JoyProgress extends wepy.component {
+  props = {
+    width: {
+      type: Number,
+      default: 0
+    },
+    status: {
+      type: String,
+      default: 'normal'
+    },
+    hideInfo: {
+      type: Boolean,
+      default: false
+    }
+  }
+  computed = {
+    cwidth() {
+      const num = parseFloat((this.width * 100).toFixed(10))
+      if (num > 100) return `100%`
+      return `${num}%`
+    },
+    classes() {
+      return `bar-inner ${this.status}`
+    }
+  }
+}
+</script>
+<style lang="less">
+@import "../../style/theme/default.less";
+.joy-progress-wrap {
+  display: flex;
+  align-items: center;
+  .bar{
+    width: 434rpx;
+    .bar-inner{
+      height:20rpx;
+      border-radius:18rpx;
+    }
+    .bar-inner.normal {
+      background:@primary-color;
+    }
+    .bar-inner.success {
+      background:@success-color;
+    }
+    .bar-inner.warning {
+      background:@warning-color;
+    }
+    .bar-inner.error {
+      background:@error-color;
+    }
+  }
+  .bar-txt{
+    margin-left: 28rpx;
+    min-width: 80rpx;
+    font-size:28rpx;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(82,82,82,1);
+  }
+}
+</style>

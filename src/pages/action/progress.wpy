@@ -1,0 +1,79 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <JoyProgress2 :width.sync="width2"/>
+          <JoyProgress3 :width.sync="width3" status="success"/>
+          <JoyProgress4 :width.sync="width4" status="warning"/>
+          <JoyProgress5 :width.sync="width5" status="error"/>
+        </view>
+      </view>
+      <view class='panel'>
+        <view class='panel-title'>动态改变</view>
+        <view class='panel-content'>
+          <view class="basic-action" @tap="basicClick">增加进度</view>
+          <JoyProgress1 :width.sync="width"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyProgress from '@/components/progress/index'
+export default class ProgressPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Progress 进度条'
+  }
+  components = {
+    JoyProgress1: JoyProgress,
+    JoyProgress2: JoyProgress,
+    JoyProgress3: JoyProgress,
+    JoyProgress4: JoyProgress,
+    JoyProgress5: JoyProgress
+  }
+  data = {
+    width: 0,
+    width2: 1,
+    width3: 0.8,
+    width4: 0.7,
+    width5: 0.6
+  }
+  methods = {
+    basicClick() {
+      this.width = this.width + 0.1
+      this.$apply()
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+  .basic-action {
+    font-size: 30rpx;
+    padding: 5rpx 10rpx;
+  }
+}
+</style>
