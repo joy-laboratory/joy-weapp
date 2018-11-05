@@ -5,12 +5,7 @@
         <view class='panel-title'>基本</view>
         <view class='panel-content'>
           <view class="basic-action" @tap="basicClick">点我弹出</view>
-          <JoyActionSheet1 :show.sync="actionShow">
-            <view class="action-list">
-              <view class="action-reply action-item">回复</view>
-              <view class="action-del action-item">删除</view>
-            </view>
-          </JoyActionSheet1>
+          <JoyActionSheet1 :show.sync="actionShow" :action.sync="action"/>
         </view>
       </view>
     </view>
@@ -27,8 +22,38 @@ export default class ActionSheetPage extends wepy.page {
     JoyActionSheet1: JoyActionSheet
   }
   data = {
-    actionShow: false
+    actionShow: false,
+    action: [
+      {
+        text: '回复',
+        style: 'color: rgba(0,0,0,1);',
+        cb: 'replay'
+      },
+      {
+        text: '删除',
+        style: 'color: rgba(230,67,64,1);',
+        cb: 'del'
+      }
+    ]
   }
+
+  events = {
+    'action-emit'(type) {
+      this[type]()
+    }
+  }
+
+  replay() {
+    console.log('点击了回复')
+    this.actionShow = false
+    this.$apply()
+  }
+  del() {
+    console.log('点击了删除')
+    this.actionShow = false
+    this.$apply()
+  }
+
   methods = {
     basicClick() {
       this.actionShow = true
@@ -62,22 +87,6 @@ export default class ActionSheetPage extends wepy.page {
   .basic-action {
     font-size: 30rpx;
     padding: 5rpx 10rpx;
-  }
-  .action-list {
-    .action-item {
-      font-size:36rpx;
-      font-family:PingFangSC-Regular;
-      font-weight:400;
-      color:rgba(0,0,0,1);
-      height:100rpx;
-      background:rgba(255,255,255,1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .action-del {
-      color:rgba(230,67,64,1);
-    }
   }
 }
 </style>
