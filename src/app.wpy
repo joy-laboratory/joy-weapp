@@ -4,13 +4,14 @@ import 'wepy-async-function';
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/index', 
+      'pages/index',
       'pages/panel',
       'pages/view/badge',
       'pages/view/avatar',
       'pages/action/action-sheet',
       'pages/action/modal',
-      'pages/action/progress'
+      'pages/action/progress',
+      'pages/other/countdown'
     ],
     window: {
       backgroundTextStyle: 'light',

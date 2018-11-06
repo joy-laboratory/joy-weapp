@@ -1,0 +1,26 @@
+<template>
+  <view class="joy-countdown-wrap">
+    倒计时组件
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+export default class JoyBadge extends wepy.component {
+  props = {
+    dot: {
+      type: Boolean,
+      default: false
+    }
+  };
+
+  computed = {
+  }
+}
+</script>
+<style lang="less" scoped>
+@import "../../style/theme/default.less";
+.joy-countdown-wrap {
+  display: flex;
+  flex-flow: row nowrap;
+}
+</style>

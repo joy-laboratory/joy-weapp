@@ -1,0 +1,27 @@
+<template>
+  <view class='countdown'>
+    <JoyCountdown1 />
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyCountdown from '@/components/countdown/index'
+
+export default class CountdownPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Countdown 倒计时'
+  }
+  components = {
+    JoyCountdown1: JoyCountdown
+  }
+  data = {
+    dot: true,
+    avatar: '../../assets/images/avatar.png'
+  }
+}
+</script>
+<style lang="less" scoped>
+.countdown {
+
+}
+</style>
