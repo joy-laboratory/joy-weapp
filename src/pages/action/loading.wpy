@@ -1,0 +1,68 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <view class="basic-action" @tap="basicClick">显示loading</view>
+          <JoyLoading1 
+            :loading.sync="loading" 
+            :text.sync="text"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyLoading from '@/components/loading/index'
+export default class LoadingPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Loading 加载'
+  }
+  components = {
+    JoyLoading1: JoyLoading
+  }
+  data = {
+    text: 'Joy weapp',
+    loading: false
+  }
+  methods = {
+    basicClick() {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+        this.$apply()
+      }, 2000);
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+  .basic-action {
+    font-size: 30rpx;
+    padding: 5rpx 10rpx;
+  }
+}
+</style>

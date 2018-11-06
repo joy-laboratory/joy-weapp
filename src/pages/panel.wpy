@@ -100,6 +100,14 @@ export default class PanelPage extends wepy.page {
           name: '轻提示'
         },
         {
+          id: 'Loading',
+          name: '加载'
+        },
+        {
+          id: 'Load-More',
+          name: '加载更多'
+        },
+        {
           id: 'Swipe-Action',
           name: '滑动操作'
         }
