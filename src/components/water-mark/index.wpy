@@ -1,0 +1,88 @@
+<template>
+  <view class="joy-water-mark-wrap">
+    <repeat for="{{wmRows}}" key="index" index="index" item="item">
+      <view class="joy-wm-row">
+        <repeat for="{{wmCols}}" key="indx" index="indx" item="item">
+          <view class="joy-wm-col joy-water-mark-txt" style="top: {{wmYspace * index + 'px'}}; left: {{wmXspace * indx * 2  + 'px'}}">{{wmTxt}}</view>
+        </repeat>
+      </view>
+    </repeat>
+    <view class="joy-wm-hidden-txt">{{wmTxt}}</view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class JoyWaterMark extends wepy.component {
+  props = {
+    wmText: {
+      type: String,
+      default: '敏感数据'
+    }
+  }
+
+  data = {
+    wmRows: null, // 水印行数
+    wmCols: null, // 水印列数
+    wmXspace: 90, // 水印x轴间隔
+    wmYspace: 80, // 水印y轴间隔
+    wmTxt: ''
+  }
+
+  onLoad() {
+    this.getTxtWh()
+    const res = wx.getSystemInfoSync()
+    const width = res.screenWidth
+    const height = res.screenHeight
+    let wmTxtWidth, wmTxtHeight
+    const query = wx.createSelectorQuery()
+    query.select('.joy-wm-hidden-txt').boundingClientRect()
+    query.exec((res) => {
+      wmTxtWidth = res[0].width
+      wmTxtHeight = res[0].height
+      this.wmCols = Math.ceil(width / (wmTxtWidth + this.wmXspace))
+      this.wmRows = Math.ceil(height / (wmTxtHeight))
+      this.$apply()
+    })
+  }
+  /** 
+   * 
+   * 更新文字获取高宽
+   * 
+  */
+  getTxtWh() {
+    this.wmTxt = this.wmText
+    this.$apply()
+  }
+}
+</script>
+<style lang="less" scoped>
+  .joy-water-mark-wrap {
+    .joy-wm-row {
+      display: flex;
+    }
+    .joy-wm-col {
+      flex: 1;
+      text-align: center;
+      align-items: center;
+    }
+  }
+  .joy-water-mark-txt {
+    color: rgba(161,161,161,.07);
+    font-size: 12px;
+    transform:rotate(-45deg);
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .joy-wm-hidden-txt {
+    visibility: hidden;
+    font-size: 12px;
+    transform:rotate(-45deg);
+    display: inline-block;
+  }
+</style>

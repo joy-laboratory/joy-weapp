@@ -1,0 +1,52 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基础显示</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyWaterMark/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyWaterMark from '@/components/water-mark/index'
+export default class WaterMarkPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'WaterMark 水印'
+  }
+  components = {
+    JoyWaterMark
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+}
+</style>

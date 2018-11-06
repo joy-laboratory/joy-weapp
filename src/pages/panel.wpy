@@ -80,6 +80,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Tag',
           name: '标签'
+        },
+        {
+          id: 'Water-Mark',
+          name: '水印'
         }
       ],
       Action: [
@@ -124,6 +128,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Textarea',
           name: '多行文本框'
+        },
+        {
+          id: 'Rate',
+          name: '评分'
         }
       ],
       Navigation: [
