@@ -17,7 +17,7 @@
             <text class='name'>{{item.id}} {{item.name}}</text>
             <text class='at-icon at-icon-chevron-right' />
           </view>
-        </repeat>  
+        </repeat>
       </view>
     </view>
   </view>
@@ -148,6 +148,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Divider',
           name: '分割线'
+        },
+        {
+          id: 'Countdown',
+          name: '倒计时'
         }
       ],
       Block: [
