@@ -1,0 +1,190 @@
+<template>
+  <view class="joy-swipe-action-wrap">
+    <view 
+      class="joy-swipe-action-bd"
+      @touchstart="touchStart" 
+      @touchmove="touchMove" 
+      @touchend="touchEnd"
+      style="transform:translate({{swPointX}}px,0);">
+      <view class="joy-sa-content">
+        <slot></slot>
+      </view>
+      <view class="joy-sa-operate-group">
+        <view class="joy-sa-operate-wrap" style="width:{{limitMoveX}}px;">
+          <repeat for="{{operates}}" key="index" index="index" item="item">
+            <view 
+              data-index="{{index}}"
+              class="joy-sa-operate" 
+              style="width: 50%; {{item.style}}"
+              @tap="handlerClick">{{item.label}}</view>
+          </repeat>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class JoySwipeAction extends wepy.component {
+  props = {
+    operates: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    operateWidth: {
+      type: Number,
+      default: 80
+    }
+  };
+
+  data = {
+    tStartPointX: 0, // 记录开始滑动点的pageX，坐标点x
+    tStartPointY: 0, // 记录开始滑动点的pageY，坐标点y
+    movePageX: 0, // 记录移动的x距离
+    movePageY: 0, // 记录移动的y距离
+    limitMoveX: 0, // 限制移动的距离
+    swPointX: 0, // 外层dom中x轴移动的距离
+    swPointY: 0 // 外层dom中y轴移动的距离
+  };
+
+  onLoad() {
+    this._updateOperateSize();
+  }
+
+  _updateOperateSize() {
+    const operates = this.operates;
+    if (operates && operates.length > 0) {
+      let limitMovePosition = 0;
+      operates.forEach(item => {
+        limitMovePosition += item.width || 0;
+      });
+      this.limitMoveX = limitMovePosition;
+    } else {
+      this.limitMoveX = this.operateWidth;
+    }
+    this.$apply();
+  }
+
+  // 移动方向判断
+  swipeDirection(x1, x2, y1, y2) {
+    return Math.abs(x1 - x2) >= Math.abs(y1 - y2)
+      ? x1 - x2 > 0
+        ? 'Left'
+        : 'Right'
+      : y1 - y2 > 0
+        ? 'Up'
+        : 'Down';
+  }
+
+  swipeLeft(mX, mY) {
+    let pageX = mX - this.tStartPointX;
+
+    if (this.limitMoveX < Math.abs(pageX)) {
+      pageX = -this.limitMoveX;
+    }
+    this.swPointX = pageX;
+
+    if (Math.abs(this.swPointX) > this.limitMoveX) {
+      this.swPointX = -this.limitMoveX;
+    }
+    this.$apply();
+  }
+
+  methods = {
+    handlerClick(e) {
+      const dataset = e.currentTarget.dataset
+      this.$emit('swipe-click', dataset.index)
+    },
+    touchStart(e) {
+      const touches = e.touches[0];
+      this.tStartPointX = touches.pageX;
+      this.tStartPointY = touches.pageY;
+    },
+    touchMove(e) {
+      const touches = e.touches[0];
+      this.movePageX = touches.pageX;
+      this.movePageY = touches.pageY;
+      const direction = this.swipeDirection(
+        this.tStartPointX,
+        this.movePageX,
+        this.tStartPointY,
+        this.movePageY
+      );
+      if (direction === 'Left') {
+        this.swipeLeft(this.movePageX, this.movePageY);
+      }
+    },
+    touchEnd(e) {
+      const changedTouches = e.changedTouches[0];
+      const direction = this.swipeDirection(
+        this.tStartPointX,
+        changedTouches.pageX,
+        this.tStartPointY,
+        changedTouches.pageY
+      );
+      let pageX = changedTouches.pageX - this.tStartPointX;
+      if (direction === 'Left') {
+        if (this.limitMoveX / 2 > Math.abs(pageX)) {
+          this.swPointX = 0;
+        } else {
+          this.swPointX =
+            this.swPointX < 0 ? -this.limitMoveX : this.limitMoveX;
+        }
+      } else {
+        this.swPointX = 0;
+      }
+
+      this.$apply();
+    }
+  };
+}
+</script>
+<style lang="less" scoped>
+@import '../../style/theme/default.less';
+.joy-swipe-action-wrap {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  .joy-swipe-action-bd {
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+  }
+
+  .joy-sa-content {
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .joy-sa-operate-group {
+    position: absolute;
+    right: -100%;
+    top: 0;
+    height: 100%;
+    z-index: 1;
+    width: 100%;
+
+    .joy-sa-operate-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      float: left;
+      white-space: nowrap;
+      box-sizing: border-box;
+      .joy-sa-operate {
+        color: #fff;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+</style>

@@ -18,6 +18,7 @@
 - [x] Progress 进度条
 - [ ] Toast 轻提示
 - [ ] Loading 加载
+- [x] SwipeAction 滑动操作
 
 #### Form 表单（包含输入框、单选框、复选框等）
 
