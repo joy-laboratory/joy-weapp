@@ -1,6 +1,6 @@
 <template>
   <view class='countdown'>
-    <JoyCountdown1 />
+    <JoyCountdown1 :countdown.sync="countdown" />
   </view>
 </template>
 <script>
@@ -16,7 +16,7 @@ export default class CountdownPage extends wepy.page {
   }
   data = {
     dot: true,
-    avatar: '../../assets/images/avatar.png'
+    countdown: 10000
   }
 }
 </script>
