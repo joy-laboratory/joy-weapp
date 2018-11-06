@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -51,7 +51,13 @@
 				{
 					"id": -1,
 					"name": "进度条",
-					"pathName": "pages/action/progress"
+					"pathName": "pages/action/progress",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "滑动操作",
+					"pathName": "pages/action/swipe-action"
 				}
 			]
 		}

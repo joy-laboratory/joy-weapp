@@ -1,0 +1,104 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <JoySwipeAction1 :operates.sync="operates">
+            <view class="td">向左滑动</view>
+          </JoySwipeAction1>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoySwipeAction from '@/components/swipe-action/index'
+export default class SwipeActionPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'SwipeAction 滑动操作'
+  }
+  components = {
+    JoySwipeAction1: JoySwipeAction
+  }
+  data = {
+    operates: [
+      {
+        width: 80,
+        label: '删除',
+        style: 'background: #6190E8',
+        cb: 'del'
+      },
+      {
+        label: '确认',
+        width: 80,
+        style: 'background: #FF4949',
+        cb: 'confirm'
+      }
+    ]
+  }
+
+  // 点击删除方法
+  del() {
+    wx.showToast({
+      title: '点击了删除',
+      icon: 'none'
+    })
+  }
+
+  // 点击确认方法
+  confirm() {
+    wx.showToast({
+      title: '点击了确认',
+      icon: 'none'
+    })
+  }
+
+  events = {
+    'swipe-click'(index) {
+      this[this.operates[index].cb]()
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+  .basic-action {
+    font-size: 30rpx;
+    padding: 5rpx 10rpx;
+  }
+  .td {
+    font-size: 30rpx;
+    color: rgba(74, 74, 74, 1);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 1rpx solid #ccc;
+    width: 100%;
+  }
+}
+</style>

@@ -10,7 +10,8 @@ export default class extends wepy.app {
       'pages/view/avatar',
       'pages/action/action-sheet',
       'pages/action/modal',
-      'pages/action/progress'
+      'pages/action/progress',
+      'pages/action/swipe-action'
     ],
     window: {
       backgroundTextStyle: 'light',
