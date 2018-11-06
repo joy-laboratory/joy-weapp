@@ -9,6 +9,7 @@ export default class extends wepy.app {
       'pages/view/badge',
       'pages/view/avatar',
       'pages/view/tag',
+      'pages/view/water-mark',
       'pages/action/action-sheet',
       'pages/action/modal',
       'pages/action/progress',
