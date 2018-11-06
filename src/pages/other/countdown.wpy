@@ -1,6 +1,22 @@
 <template>
   <view class='countdown'>
-    <JoyCountdown1 :countdown.sync="countdown" />
+    <view class="item">
+      默认样式
+      <JoyCountdown1
+        :countdown.sync="countdown1"
+        @runcount.user="runcount"
+        @endcount.user="endcount"
+      />
+    </view>
+    <view class="item">
+      自定义样式
+      <JoyCountdown2
+        :countdown.sync="countdown2"
+        :format.sync="format2"
+        :numStyle.sync="numStyle"
+        :symbolStyle.sync="symbolStyle"
+      />
+    </view>
   </view>
 </template>
 <script>
@@ -12,16 +28,39 @@ export default class CountdownPage extends wepy.page {
     navigationBarTitleText: 'Countdown 倒计时'
   }
   components = {
-    JoyCountdown1: JoyCountdown
+    JoyCountdown1: JoyCountdown,
+    JoyCountdown2: JoyCountdown
   }
   data = {
     dot: true,
-    countdown: 10000
+    countdown1: 1 * 6,
+    countdown2: 1 * 60 * 60 * 2.5,
+    format2: 'hh:mm:ss',
+    numStyle: 'width: 48rpx; font-size: 28rpx; color: #ffffff; background: #000; text-align: center; border-radius: 8rpx; padding: 5rpx 0;',
+    symbolStyle: 'font-size: 28rpx; color: red; padding: 0 12rpx;'
+  }
+  methods = {
+    runcount() {
+      console.log('count is runing')
+    },
+    endcount() {
+      console.log('countdown end')
+    }
   }
 }
 </script>
 <style lang="less" scoped>
 .countdown {
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30rpx 0;
+  }
 }
 </style>
