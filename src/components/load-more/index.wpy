@@ -1,0 +1,60 @@
+<template>
+  <view class="joy-loadmore" style="{{ishidden ? 'display: none' : 'display: flex'}}">
+    <view class="joy-loading"></view>
+    <view class="joy-loadmore-tips">{{text}}</view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  class JDLoadMore extends wepy.component {
+    props = {
+      ishidden: {
+        type: Boolean,
+        default: false
+      },
+      text: {
+        type: String,
+        default: '加载中...'
+      }
+    }
+  }
+  export default JDLoadMore
+</script>
+<style lang="less" scoped>
+  .joy-loadmore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80rpx;
+    line-height: 80rpx;
+    font-size: 24rpx;
+    .joy-loading {
+      width:48rpx;
+      height:48rpx;
+      display: inline-block;
+      vertical-align: middle;
+      animation: weuiLoading 1s linear infinite;
+      background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFM0lEQVRoQ+1ZaYgcRRR+r3p2ceMakeCfgJh4BA2KF2JAvNEfHj8kCh5B8IrCIrq70+/NsJq0Bzvd1TMxLMmPINH4I1GDBPR3QEXjgSbGgyCJwUSCKIIorsMmu91PauhZ2tmeme7W3WxM6tcw9Y7vq/deVdcrhBN84AmOH04RON4RnLUIVCqVJZZl7RaRQCl1jW3bP8wG2Vkj4Hmeg4hrDWgReZGZ18wbAo7j9C5YsOAJETnMzO8mAdNaewBA0VyViOwkOd/37xKRJfV6fZPjOMeykswVAc/zaog4ZBYXAK4jol2tjtMQcF33eqXU+wCNzeRlIjI2M41cBLTWrwPAQ5GnvbZtX4mIhsz06EZARND3/W8BYHmUZluZeVUm9BHzrDpQqVQusCxrHwD0RMqPEtGrWQhorVcDwKZIZzIIguXlcvn7rGByRcA40VpXAWA4Wr1fAeB8Zv6zCaBTBDzPOwMADiPiWZF8jYiKWcEb+dwEIhAHEfHsiITPzM2iNQTbFrHWeh0ADLYjn4VIbgJRFNqmgda6AgClCIwmIja/o/T7DgCsiMBjzLw5C+i4bFsCGzdu7B8fH38FEetKqReKxeLhVicJhbiDmVdG5K4FgA8inZuI6MPo/x0AcHenDcDM1Wq1c4IgWCMiC0VkdalU+iOJZFsCWmsTYhNqcxBNIGK1Xq9XHMepxw1FW2EDqIh8xcyXN+dd173Usiy0bfvrWG18AQBXNfIXcYVt25/F7Y2NjS2cmJgoi8gQIvZGdomZ/UwEXNe9DBE/RcTTmooickQpxbZtb4sb8zzvGQC4DRGfJaI9ndIhslsRkZ2lUqmxQGZs377dOnTo0GpzaiPiopjPY2EYriiXy19mImCEq9XqRUEQbEDEW1qUd01OTq4cGRn5JW/utkTxDkRch4jL4v+LyMeWZT1eLBbNlp04UhWxOe7DMFyPiOfFrGwhoof/LYF4qsZs/SwiRWbe2s1+KgLGiPn+6evrezr6QDsdAEaIaLSbg27zWuv3AODGKNenAGCsv79/7cDAwHg33UYdpRGKy5giO3r06MWtxZfVTlPe9/1VYRhuRsSPlFJPdUqXzDWQF9Rc6mWOwFyCS+NrBoFarbZsamrqgVZlRAx7enrGBgcHf09jOKuM67pmJ7q6k16hUNg2PDy8Py4zg4DneXsQ8YokQyLyJjPfnxVcN3lz/VRKHUDEQifZ1oMysYi11ubAmD5NWwy+RUT3dQOUdd73/aVhGO7vRgAA9hLRPxZ3RgS01heKyINJKVQoFDYMDQ39lhVgGvk0KYSIW4noQMcUSuNsPsn8/3ah+bS6abCcHBHQWt8uIhoAFluWdWuxWNydZnXmQqZjBJI+p0VkPTM37rPzYbQlYLY1pdQ7zburASsiPyml7rFt+5P5AD7xIGsCc113SClVi4C3vVIebyJdL/UA8Je5DjDzkeMNNsn/ybELJTGPOtQDInKwXYd6LiKWOwJaa9PmaLQDReRmZjZXwzkfuQi0NndF5F5mfjsPeq31DSKyore3d1Oeu0YuAi3t9X22bV/S2l43ZEZHRxcppRaXSqVvksiZxpdSqtH0EpHXmPmRrIuQi0DLA4dpGzZbiNP+m29kAHAmAEy3FuMAzUEZhqHp+RgcbxDRjJtgN0K5CDiOU+jr63sSAH5sV8DxNzITDCIaSQKjtb4TAJaKyJZ4e74b8OZ8LgJpjGutnweA5sPeS0T0XBq9rDKzRqBarZ4bBMHnBtAJ+cyadSXzys9aBPICyqp3ikDWFfuv5f8GuWE2T3q0gYoAAAAASUVORK5CYII=) no-repeat;
+      background-size: 100%;
+      margin-right: 10rpx;
+    }
+
+    .joy-loadmore-tips {
+      display: inline-block;
+      vertical-align: middle;
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+  @keyframes weuiLoading {
+    from {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

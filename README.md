@@ -9,16 +9,17 @@
 - [x] Avatar 头像
 - [x] Badge 徽标
 - [ ] NoticeBar 通告栏
-- [ ] Tag 标签
+- [x] Tag 标签
 
 #### Action 操作反馈（包含对话框、进度条、动作面板等）
 
 - [x] Action-Sheet 动作面板
 - [x] Modal 模态框
 - [x] Progress 进度条
-- [ ] Toast 轻提示
-- [ ] Loading 加载
+~~- [ ] Toast 轻提示~~
+- [x] Loading 加载
 - [x] SwipeAction 滑动操作
+- [x] LoadMore 加载更多
 
 #### Form 表单（包含输入框、单选框、复选框等）
 

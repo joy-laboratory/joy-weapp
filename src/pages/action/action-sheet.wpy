@@ -44,12 +44,18 @@ export default class ActionSheetPage extends wepy.page {
   }
 
   replay() {
-    console.log('点击了回复')
+    wx.showToast({
+      title: '点击了回复',
+      icon: 'none'
+    })
     this.actionShow = false
     this.$apply()
   }
   del() {
-    console.log('点击了删除')
+    wx.showToast({
+      title: '点击了删除',
+      icon: 'none'
+    })
     this.actionShow = false
     this.$apply()
   }

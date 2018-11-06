@@ -1,0 +1,76 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基础</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyTag1 text="问卷"/>
+              <JoyTag2 text="投票" status="info"/>
+              <JoyTag3 status="success"/>
+              <JoyTag4 status="warning"/>
+              <JoyTag5 status="error"/>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='panel'>
+        <view class='panel-title'>尺寸</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyTag6 text="问卷"/>
+            </view>
+            <view class='subitem'>
+              <JoyTag7 text="投票" status="info" size="big"/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyTag from '@/components/tag/index'
+export default class TagPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Tag 标签'
+  }
+  components = {
+    JoyTag1: JoyTag,
+    JoyTag2: JoyTag,
+    JoyTag3: JoyTag,
+    JoyTag4: JoyTag,
+    JoyTag5: JoyTag,
+    JoyTag6: JoyTag,
+    JoyTag7: JoyTag
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+}
+</style>

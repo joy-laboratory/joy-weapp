@@ -95,9 +95,17 @@ export default class PanelPage extends wepy.page {
           id: 'Progress',
           name: '进度条'
         },
+        // {
+        //   id: 'Toast',
+        //   name: '轻提示'
+        // },
         {
-          id: 'Toast',
-          name: '轻提示'
+          id: 'Loading',
+          name: '加载'
+        },
+        {
+          id: 'Load-More',
+          name: '加载更多'
         },
         {
           id: 'Swipe-Action',

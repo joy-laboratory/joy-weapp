@@ -1,0 +1,55 @@
+<template>
+  <view class="joy-tag {{status}} {{size}}">{{text}}</view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class JoyTag extends wepy.component {
+    props = {
+      status: {
+        type: String,
+        default: 'normal'
+      },
+      text: {
+        type: String,
+        default: '标签'
+      },
+      size: {
+        type: String,
+        default: 'normal'
+      }
+    }
+  }
+</script>
+<style lang="less" scoped>
+@import "../../style/theme/default.less";
+.joy-tag {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width:68rpx;
+  padding: 6rpx 0;
+  border-radius:4rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:#ffffff;
+  background:@primary-color;
+}
+.joy-tag.info {
+  background:@info-color;
+}
+.joy-tag.success {
+  background:@success-color;
+}
+.joy-tag.warning {
+  background:@warning-color;
+}
+.joy-tag.error {
+  background:@error-color;
+}
+.joy-tag.big {
+  width:@tag-big;
+  font-size:@tag-big-font;
+}
+</style>

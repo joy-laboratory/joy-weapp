@@ -1,0 +1,83 @@
+<template>
+<view catchtouchmove class="joy-fix-loading {{ loading ? 'show' : 'hidden' }}">
+  <view class="joy-loading-wrap">
+    <view class="joy-loading">{{text}}</view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class JoyLoading extends wepy.component {
+  props = {
+    loading: {
+      type: Boolean,
+      default: true
+    },
+    text: {
+      type: String,
+      default: '默认文字'
+    }
+  };
+}
+</script>
+<style lang="less" scoped>
+.joy-fix-loading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  overflow: hidden;
+  z-index: 999;
+}
+.joy-loading-wrap {
+  position: relative;
+  height: calc(100vh);
+  line-height: 100vh;
+  .joy-loading {
+    font-size: 50rpx;
+    text-align: center;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0, #ccc),
+      color-stop(0.4, #ccc),
+      color-stop(0.5, white),
+      color-stop(0.6, #ccc),
+      color-stop(1, #ccc)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: loadingAnimate 1.5s infinite;
+    font-weight: 700;
+    font-style: italic;
+  }
+}
+.joy-fix-loading.show {
+  display: block;
+}
+.joy-fix-loading.hidden {
+  display: none;
+}
+
+@-webkit-keyframes loadingAnimate {
+  from {
+    background-position: -100px;
+  }
+  to {
+    background-position: 100px;
+  }
+}
+
+@keyframes loadingAnimate {
+  from {
+    background-position: -100px;
+  }
+  to {
+    background-position: 100px;
+  }
+}
+</style>
