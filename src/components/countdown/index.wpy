@@ -181,7 +181,7 @@ export default class JoyBadge extends wepy.component {
     }
   }
 
-  onPageHide() {
+  onUnload() {
     clearInterval(this._timer);
   }
 }
