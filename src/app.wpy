@@ -17,7 +17,8 @@ export default class extends wepy.app {
       'pages/action/swipe-action',
       'pages/action/loading',
       'pages/action/load-more',
-      'pages/navigation/navbar'
+      'pages/navigation/navbar',
+      'pages/navigation/tabs'
     ],
     window: {
       backgroundTextStyle: 'light',
