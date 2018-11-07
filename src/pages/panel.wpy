@@ -84,6 +84,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Water-Mark',
           name: '水印'
+        },
+        {
+          id: 'Divider',
+          name: '分割线'
         }
       ],
       Action: [

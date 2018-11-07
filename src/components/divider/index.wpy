@@ -1,0 +1,42 @@
+<template>
+  <view class="joy-divider-wrap">
+    <text class="joy-divider-left" style="width: 12%"></text>
+    <text class="joy-divider-txt">{{text}}</text>
+    <text class="joy-divider-right" style="width: 12%"></text>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class JoyDivider extends wepy.component {
+  props = {
+    text: {
+      type: String,
+      default: ''
+    }
+  };
+}
+</script>
+<style lang="less" scoped>
+.joy-divider-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32rpx;
+  .joy-divider-left,
+  .joy-divider-right {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    border-top: 2rpx solid #f3f3f5;
+    height: 2rpx;
+    vertical-align: middle;
+  }
+  .joy-divider-txt {
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:#4F4F4F;
+    font-size: 26rpx;
+    margin: 0 20rpx;
+  }
+}
+</style>
