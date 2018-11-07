@@ -17,7 +17,7 @@ import wepy from 'wepy'
 import JoyDivider from '@/components/divider/index'
 export default class DividerPage extends wepy.page {
   config = {
-    navigationBarTitleText: 'Avatar 头像'
+    navigationBarTitleText: 'Divider 分割线'
   }
   components = {
     JoyDivider1: JoyDivider
