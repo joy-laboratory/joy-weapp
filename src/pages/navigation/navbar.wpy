@@ -1,0 +1,49 @@
+<template>
+  <view class='navbar'>
+    <JoyNavbar1></JoyNavbar1>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyNavbar from '@/components/navbar/index'
+
+export default class NavbarPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Navbar 倒计时'
+  }
+  components = {
+    JoyNavbar1: JoyNavbar
+  }
+  data = {
+    dot: true,
+    countdown1: 1 * 6,
+    countdown2: 1 * 60 * 60 * 2.5,
+    format2: 'hh:mm:ss',
+    numStyle: 'width: 48rpx; font-size: 28rpx; color: #ffffff; background: #000; text-align: center; border-radius: 8rpx; padding: 5rpx 0;',
+    symbolStyle: 'font-size: 28rpx; color: red; padding: 0 12rpx;'
+  }
+  methods = {
+    runcount() {
+      console.log('count is runing')
+    },
+    endcount() {
+      console.log('countdown end')
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.countdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30rpx 0;
+  }
+}
+</style>

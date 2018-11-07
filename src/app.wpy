@@ -16,7 +16,8 @@ export default class extends wepy.app {
       'pages/other/countdown',
       'pages/action/swipe-action',
       'pages/action/loading',
-      'pages/action/load-more'
+      'pages/action/load-more',
+      'pages/navigation/navbar'
     ],
     window: {
       backgroundTextStyle: 'light',

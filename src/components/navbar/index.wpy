@@ -1,0 +1,26 @@
+<template>
+  <view class="joy-navbar">
+    默认导航
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  class JDNavbar extends wepy.component {
+    props = {
+      ishidden: {
+        type: Boolean,
+        default: false
+      },
+      text: {
+        type: String,
+        default: '加载中...'
+      }
+    }
+  }
+  export default JDNavbar
+</script>
+<style lang="less" scoped>
+  .joy-navbar {
+
+  }
+</style>
