@@ -1,24 +1,26 @@
 <template>
-  <view class="joy-comment-textarea-wake">
-    <image class="joy-avatar" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTITykVBZct6J2nv5C8m98lbpyvU9l8yxibaY7Sfic7mPx1mSMQ1c8WzsxWqcUOujmoYZDiaXLUmFRE4Q/132" />
-    <view class="joy-comment-view joy-comment-textarea">
-      <textarea
-        auto-height
-        fixed
-        value="{{textareaValue}}"
-        placeholder="{{placeholder}}" 
-        placeholder-style="color: rgb(89,88,98);font-size:26rpx;font-family:PingFangSC-Regular;font-weight:400;"
-        bindinput="onChange"
-        bindconfirm="onConfirm"
-        bindblur="onBlur"
-        cursor-spacing="{{cursorSpacing}}"
-        focus="{{focus}}" />
+  <view hidden="{{ishidden}}">
+    <view class="joy-comment-textarea-wake">
+      <image class="joy-avatar" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTITykVBZct6J2nv5C8m98lbpyvU9l8yxibaY7Sfic7mPx1mSMQ1c8WzsxWqcUOujmoYZDiaXLUmFRE4Q/132" />
+      <view class="joy-comment-view joy-comment-textarea">
+        <textarea
+          auto-height
+          fixed
+          value="{{textareaValue}}"
+          placeholder="{{placeholder}}" 
+          placeholder-style="color: rgb(89,88,98);font-size:26rpx;font-family:PingFangSC-Regular;font-weight:400;"
+          bindinput="onChange"
+          bindconfirm="onConfirm"
+          bindblur="onBlur"
+          cursor-spacing="{{cursorSpacing}}"
+          focus="{{focus}}" />
+      </view>
+      <view class="joy-comment-send" @tap="onConfirm">发送</view>
     </view>
-    <view class="joy-comment-send" @tap="onConfirm">发送</view>
   </view>
 </template>
 <script>
-import wepy from 'wepy';
+import wepy from 'wepy'
 export default class JoyComment extends wepy.component {
   props = {
     cursorSpacing: {
@@ -36,31 +38,49 @@ export default class JoyComment extends wepy.component {
     emptyMessage: {
       type: String,
       default: '请填写评论内容！'
+    },
+    ishidden: {
+      type: Boolean,
+      default: true
     }
-  };
+  }
 
   data = {
-    textareaValue: ''
-  };
+    textareaValue: '',
+    _placeholder: ''
+  }
+
+  watch = {
+    ishidden(val) {
+      if (val) {
+        this._placeholder = this.placeholder
+        this.placeholder = ''
+      } else {
+        this.placeholder = this._placeholder || this.placeholder
+      }
+      this.$apply()
+    }
+  }
 
   methods = {
     onChange(e) {
-      this.textareaValue = e.detail.value;
+      this.textareaValue = e.detail.value
     },
     onConfirm(e) {
       if (!this.textareaValue) {
         wx.showToast({
           title: this.emptyMessage,
           icon: 'none'
-        });
-        return;
+        })
+        return
       }
-      this.$emit('on-confirm');
-      this.textareaValue = '';
+      this.$emit('on-confirm')
+      this.textareaValue = ''
     },
     onBlur() {
-      this.$emit('on-blur');
-      this.$apply();
+      this.$emit('on-blur')
+      this.placeholder = ''
+      this.$apply()
     }
   };
 }

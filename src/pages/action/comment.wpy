@@ -5,10 +5,7 @@
         <view class='panel-title'>基本</view>
         <view class='panel-content'>
           <view class="basic-action" @tap="basicClick">唤醒输入框</view>
-          <view class="basic-action" @tap="basicClick2">隐藏输入框</view>
-          <view hidden="{{textareaShow}}">
-            <JoyComment :focus.sync="focus"/>
-          </view>
+          <JoyComment :focus.sync="focus" :ishidden.sync="ishidden"/>
         </view>
       </view>
     </view>
@@ -25,7 +22,7 @@ export default class CommentPage extends wepy.page {
     JoyComment
   }
   data = {
-    textareaShow: true,
+    ishidden: true,
     focus: false
   }
 
@@ -37,7 +34,7 @@ export default class CommentPage extends wepy.page {
       })
     },
     'on-blur'() {
-      this.textareaShow = true
+      this.ishidden = true
       this.focus = false
       this.$apply()
     }
@@ -45,13 +42,8 @@ export default class CommentPage extends wepy.page {
 
   methods = {
     basicClick() {
-      this.textareaShow = false
+      this.ishidden = false
       this.focus = true
-      this.$apply()
-    },
-    basicClick2() {
-      this.textareaShow = true
-      this.focus = false
       this.$apply()
     }
   }
