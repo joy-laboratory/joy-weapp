@@ -118,6 +118,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Swipe-Action',
           name: '滑动操作'
+        },
+        {
+          id: 'Comment',
+          name: '评论'
         }
       ],
       Form: [
@@ -176,7 +180,7 @@ export default class PanelPage extends wepy.page {
           name: '分享列表'
         },
         {
-          id: 'Comment',
+          id: 'Comment-Block',
           name: '评论'
         }
       ]

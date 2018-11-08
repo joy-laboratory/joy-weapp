@@ -22,6 +22,7 @@
 - [x] Loading 加载
 - [x] SwipeAction 滑动操作
 - [x] LoadMore 加载更多
+- [x] Comment 评论
 
 #### Form 表单（包含输入框、单选框、复选框等）
 
@@ -47,7 +48,7 @@
 
 - [ ] MessageList 消息列表
 - [ ] Diary 分享列表
-- [ ] Comment 评论
+- [ ] CommentBlock 评论
 - [ ] Overview 概览
 - [ ] ArticleList 文章列表
 
