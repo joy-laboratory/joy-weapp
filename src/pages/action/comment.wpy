@@ -80,6 +80,7 @@ export default class CommentPage extends wepy.page {
     }
   }
   .basic-action {
+    display: inline-block;
     font-size: 30rpx;
     padding: 5rpx 10rpx;
   }

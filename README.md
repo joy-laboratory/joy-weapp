@@ -48,7 +48,7 @@
 
 - [ ] MessageList 消息列表
 - [ ] Diary 分享列表
-- [ ] CommentBlock 评论
+- [ ] CommentBlock 评论列表
 - [ ] Overview 概览
 - [ ] ArticleList 文章列表
 
