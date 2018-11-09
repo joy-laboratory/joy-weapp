@@ -29,15 +29,7 @@
         scroll-with-animation="{{animate}}"
       >
         <view class="tab__navbar-wrap">
-          <repeat for="{{tabs}}" key="index" index="index" item="tab">
-            <view
-              class="tab__navbar-item tab__navbar-item--default"
-              @tap="onSwitch({{index}})"
-              style="width: {{width ? width + 'rpx' : 'auto'}}; color:{{index === activeIndex ? activeTextColor : textColor}}; border-bottom:{{index === activeIndex ? '4rpx solid ' + activeLineColor : '0'}}"
-            >
-              <label class="tab__navbar-title">{{tab.label}}</label>
-            </view>
-          </repeat>
+          <slot name="tabList"></slot>
         </view>
       </scroll-view>
     </block>
@@ -45,7 +37,7 @@
     <!-- tab-panel -->
     <view class="tab__content-wrap" style="border-top: 2rpx solid {{lineColor}}; {{fullScreen? 'height: 100%;': ''}}">
       <view class="tab__content" style="{{fullScreen? 'height: 100%;': ''}}">
-        <slot></slot>
+        <!-- <slot></slot> -->
       </view>
     </view>
 
