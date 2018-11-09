@@ -34,13 +34,6 @@
       </scroll-view>
     </block>
 
-    <!-- tab-panel -->
-    <view class="tab__content-wrap" style="border-top: 2rpx solid {{lineColor}}; {{fullScreen? 'height: 100%;': ''}}">
-      <view class="tab__content" style="{{fullScreen? 'height: 100%;': ''}}">
-        <!-- <slot></slot> -->
-      </view>
-    </view>
-
   </view>
 </template>
 

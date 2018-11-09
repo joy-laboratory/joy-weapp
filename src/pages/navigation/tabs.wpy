@@ -15,7 +15,7 @@
         :tabs.sync="tabs"
         :type.sync="tabType2"
       >
-        <view slot="tabList">
+        <view slot="tabList" class="complex-tab">
           <repeat for="{{tabs}}" key="index" index="index" item="tab">
             <JoyTabLabel :tab.sync="tab" :tabIndex.sync="index">
               <view class="demo-tab__label">
@@ -78,6 +78,11 @@ export default class TabsPage extends wepy.page {
 </script>
 <style lang="less" scoped>
 .navbar-page {
+  .complex-tab {
+    width: 750rpx;
+    display: flex;
+    justify-content: space-between;
+  }
   .demo-tab__label {
     width: 200rpx;
     margin: 20rpx 0;
