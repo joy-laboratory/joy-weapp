@@ -1,5 +1,5 @@
 <template>
-  <view class="joytab {{fullScreen? 'tab__full' : ''}}">
+  <view class="joytab">
     <!-- defalut tab-label -->
     <block wx:if="{{type === 'simple'}}">
       <scroll-view
@@ -11,19 +11,12 @@
           <repeat for="{{tabs}}" key="index" index="index" item="tab">
             <view
               class="tab__navbar-item tab__navbar-item--default"
-              data-key="{{tab.key}}"
-              data-idx="{{index}}"
-              @tap="onSwitch"
-              style="width: {{width}}rpx; color:{{index === activeKey ? activeTextColor : textColor}}"
+              @tap="onSwitch({{index}})"
+              style="width: {{width ? width + 'rpx' : 'auto'}}; color:{{index === activeIndex ? activeTextColor : textColor}}; border-bottom:{{index === activeIndex ? '4rpx solid ' + activeLineColor : '0'}}"
             >
               <label class="tab__navbar-title">{{tab.label}}</label>
             </view>
           </repeat>
-
-          <view class="tab__line {{!animate ? '' : 'tab__line--animate'}}"
-            style="left:{{move}}rpx; width: {{width}}rpx; background-color: {{activeLineColor}};">
-          </view>
-
         </view>
       </scroll-view>
     </block>
@@ -57,7 +50,6 @@
 
 <script>
 import wepy from 'wepy'
-// import Event from './Event';
 
 export default class JDTab extends wepy.component {
   props = {
@@ -71,10 +63,6 @@ export default class JDTab extends wepy.component {
     defaultIndex: {
       type: Number,
       default: 0
-    },
-    componentId: {
-      type: String,
-      default: ''
     },
     animate: {
       type: Boolean,
@@ -95,51 +83,25 @@ export default class JDTab extends wepy.component {
     activeLineColor: {
       type: String,
       default: '#ff5777'
+    },
+    width: {
+      defalut: Number
     }
   }
   data = {
-    width: 0,
-    activeKey: 0,
+    activeIndex: 0,
     type: 'simple',
     scrollX: true,
     move: 0
   }
   onLoad() {
-    // let activeKey = this.defaultIndex;
-    // this.onSwitch(activeKey, 'all');
-    let len = this.tabs.length;
-    const width = parseInt(750 / (len > 5 ? 5 : len))
-    this.width = width
+    this.activeIndex = this.defaultIndex
     this.$apply()
-    // this.type === 'complex' && Event.emit(`label-width-${this.componentId}`, width);
-    // this.setData({
-    //   tabs: this.tabs,
-    //   width,
-    //   type: this.type,
-    //   move: width * activeKey
-    // });
-  }
-  listenSwitch() {
-    Event.on(`from-label-switch-${this.componentId}`, key => {
-      this.onSwitch(key, 'to-panel');
-    });
-    Event.on(`from-panel-switch-${this.componentId}`, key => {
-      this.onSwitch(key, 'to-label');
-    });
-  }
-
-  afterSwitch(activeKey) {
-    // this.triggerEvent('tabchange', {
-    //   key: activeKey,
-    //   componentId: this.componentId
-    // });
   }
   methods = {
-    onSwitch(activeKey) {
-      const move = activeKey * this.width;
-      this.move = move
-      this.activeKey = activeKey
-      this.afterSwitch(activeKey);
+    onSwitch(activeIndex) {
+      this.activeIndex = activeIndex
+      this.$emit('tabchange', activeIndex)
     }
   }
 }
@@ -155,6 +117,8 @@ export default class JDTab extends wepy.component {
 
   .tab__navbar-wrap {
     position: relative;
+    display: flex;
+    justify-content: space-between;
   }
   .tab__navbar {
     white-space: nowrap;
@@ -165,6 +129,8 @@ export default class JDTab extends wepy.component {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8rpx 14rpx;
   }
   .tab__navbar-item {
     tab__line--default {

@@ -1,6 +1,10 @@
 <template>
-  <view class='navbar'>
-    <JoyTabs1 :tabs.sync="tabs"></JoyTabs1>
+  <view class='navbar-page'>
+    <JoyTabs1
+      :tabs.sync="tabs"
+      :width.sync="width1"
+    >
+    </JoyTabs1>
   </view>
 </template>
 <script>
@@ -9,12 +13,13 @@ import JoyTabs from '@/components/tabs/index'
 
 export default class TabsPage extends wepy.page {
   config = {
-    navigationBarTitleText: 'Tabs 倒计时'
+    navigationBarTitleText: 'Tabs'
   }
   components = {
     JoyTabs1: JoyTabs
   }
   data = {
+    width1: 200,
     tabs: [
       {label: '选项一', key: '内容一'},
       {label: '选项二', key: '内容二'},
@@ -35,17 +40,7 @@ export default class TabsPage extends wepy.page {
 }
 </script>
 <style lang="less" scoped>
-.countdown {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 30rpx 0;
-  }
+.navbar-page {
+
 }
 </style>
