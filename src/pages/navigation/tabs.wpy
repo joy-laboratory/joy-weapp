@@ -1,10 +1,21 @@
 <template>
   <view class='navbar-page'>
-    <JoyTabs1
-      :tabs.sync="tabs"
-      :width.sync="width1"
-    >
-    </JoyTabs1>
+    <view>
+      基础tab组件
+      <JoyTabs1
+        :tabs.sync="tabs"
+        :width.sync="width1"
+      >
+      </JoyTabs1>
+    </view>
+    <view>
+      高级tab组件
+      <JoyTabs2
+        :tabs.sync="tabs"
+        :type.sync="tabType2"
+      >
+      </JoyTabs2>
+    </view>
   </view>
 </template>
 <script>
@@ -16,10 +27,12 @@ export default class TabsPage extends wepy.page {
     navigationBarTitleText: 'Tabs'
   }
   components = {
-    JoyTabs1: JoyTabs
+    JoyTabs1: JoyTabs,
+    JoyTabs2: JoyTabs
   }
   data = {
     width1: 200,
+    tabType2: 'complex',
     tabs: [
       {label: '选项一', key: '内容一'},
       {label: '选项二', key: '内容二'},

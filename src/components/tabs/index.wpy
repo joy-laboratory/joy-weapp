@@ -22,18 +22,22 @@
     </block>
 
     <!-- config tab-label -->
-    <block>
+    <block wx:if="{{type === 'complex'}}">
       <scroll-view
-        scroll-x="{{true}}"
+        scroll-x="{{scrollX}}"
         class="tab__navbar"
-        scroll-left="{{(move-width*2.1) / 2}}"
         scroll-with-animation="{{animate}}"
       >
         <view class="tab__navbar-wrap">
-          <slot name="tablabel"></slot>
-          <view class="tab__line {{!animate ? '' : 'tab__line--animate'}}"
-            style="left:{{move}}rpx; width: {{width}}rpx; background-color: {{activeLineColor}};">
-          </view>
+          <repeat for="{{tabs}}" key="index" index="index" item="tab">
+            <view
+              class="tab__navbar-item tab__navbar-item--default"
+              @tap="onSwitch({{index}})"
+              style="width: {{width ? width + 'rpx' : 'auto'}}; color:{{index === activeIndex ? activeTextColor : textColor}}; border-bottom:{{index === activeIndex ? '4rpx solid ' + activeLineColor : '0'}}"
+            >
+              <label class="tab__navbar-title">{{tab.label}}</label>
+            </view>
+          </repeat>
         </view>
       </scroll-view>
     </block>
@@ -53,12 +57,12 @@ import wepy from 'wepy'
 
 export default class JDTab extends wepy.component {
   props = {
+    type: {
+      type: String,
+      default: 'simple'
+    },
     tabs: {
       type: Array
-    },
-    fullScreen: {
-      type: Boolean,
-      default: false
     },
     defaultIndex: {
       type: Number,
@@ -90,9 +94,7 @@ export default class JDTab extends wepy.component {
   }
   data = {
     activeIndex: 0,
-    type: 'simple',
-    scrollX: true,
-    move: 0
+    scrollX: true
   }
   onLoad() {
     this.activeIndex = this.defaultIndex
