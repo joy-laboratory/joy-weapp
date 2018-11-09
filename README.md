@@ -35,7 +35,7 @@
 
 - [ ] NavBar 导航栏
 - [ ] TabBar 标签栏
-- [ ] Tabs 标签页
+- [x] Tabs 标签页
 
 #### Other 其他（包含回到顶部、分割线等）
 
