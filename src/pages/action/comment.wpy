@@ -1,0 +1,80 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <view class="basic-action" @tap="basicClick">唤醒输入框</view>
+          <JoyComment :focus.sync="focus" :ishidden.sync="ishidden"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyComment from '@/components/comment/index'
+export default class CommentPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Comment 评论'
+  }
+  components = {
+    JoyComment
+  }
+  data = {
+    ishidden: true,
+    focus: false
+  }
+
+  events = {
+    'on-confirm'() {
+      wx.showToast({
+        title: '点击了发布按钮',
+        icon: 'none'
+      })
+    },
+    'on-blur'() {
+      this.ishidden = true
+      this.focus = false
+      this.$apply()
+    }
+  }
+
+  methods = {
+    basicClick() {
+      this.ishidden = false
+      this.focus = true
+      this.$apply()
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+  .basic-action {
+    display: inline-block;
+    font-size: 30rpx;
+    padding: 5rpx 10rpx;
+  }
+}
+</style>

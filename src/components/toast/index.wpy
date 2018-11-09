@@ -1,0 +1,66 @@
+<template>
+  <cover-view class="joy-toast-wrap" style="{{_ishidden ? 'display: none' : 'display: flex'}}">
+    <cover-view class="joy-toast-txt">{{text}}</cover-view>
+  </cover-view>
+</template>
+<script>
+  import wepy from 'wepy'
+  let timer = null;
+  export default class JoyToast extends wepy.component {
+    props = {
+      text: {
+        type: String,
+        default: ''
+      },
+      ishidden: {
+        type: Boolean,
+        default: false,
+        twoWay: true
+      },
+      time: {
+        type: Number,
+        default: 1000
+      }
+    }
+
+    data = {
+      _ishidden: true
+    }
+
+    watch = {
+      ishidden(val) {
+        this.ishidden = true
+        this._ishidden = !this._ishidden
+        this.$apply()
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          this._ishidden = !this._ishidden
+          this.$apply()
+          timer = null
+        }, this.time)
+      }
+    }
+  }
+</script>
+<style lang="less" scoped>
+  .joy-toast-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display:flex;
+    z-index:9;
+    align-items:center;
+    justify-content:center;
+  }
+  .joy-toast-txt {
+    background:rgba(40,40,40,.8);
+    border-radius:8rpx;
+    font-size:24rpx;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    padding: 45rpx 75rpx;
+  }
+</style>

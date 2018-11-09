@@ -84,6 +84,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Water-Mark',
           name: '水印'
+        },
+        {
+          id: 'Divider',
+          name: '分割线'
         }
       ],
       Action: [
@@ -99,10 +103,10 @@ export default class PanelPage extends wepy.page {
           id: 'Progress',
           name: '进度条'
         },
-        // {
-        //   id: 'Toast',
-        //   name: '轻提示'
-        // },
+        {
+          id: 'Toast',
+          name: '轻提示'
+        },
         {
           id: 'Loading',
           name: '加载'
@@ -114,6 +118,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Swipe-Action',
           name: '滑动操作'
+        },
+        {
+          id: 'Comment',
+          name: '评论'
         }
       ],
       Form: [
@@ -172,7 +180,7 @@ export default class PanelPage extends wepy.page {
           name: '分享列表'
         },
         {
-          id: 'Comment',
+          id: 'Comment-Block',
           name: '评论'
         }
       ]

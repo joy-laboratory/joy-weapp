@@ -1,0 +1,50 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基本</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <JoyDivider1 text='已经到底部了~'></JoyDivider1>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyDivider from '@/components/divider/index'
+export default class DividerPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Divider 分割线'
+  }
+  components = {
+    JoyDivider1: JoyDivider
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+}
+</style>
