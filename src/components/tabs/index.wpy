@@ -22,28 +22,17 @@
     </block>
 
     <!-- config tab-label -->
-    <block>
+    <block wx:if="{{type === 'complex'}}">
       <scroll-view
-        scroll-x="{{true}}"
+        scroll-x="{{scrollX}}"
         class="tab__navbar"
-        scroll-left="{{(move-width*2.1) / 2}}"
         scroll-with-animation="{{animate}}"
       >
         <view class="tab__navbar-wrap">
-          <slot name="tablabel"></slot>
-          <view class="tab__line {{!animate ? '' : 'tab__line--animate'}}"
-            style="left:{{move}}rpx; width: {{width}}rpx; background-color: {{activeLineColor}};">
-          </view>
+          <slot name="tabList"></slot>
         </view>
       </scroll-view>
     </block>
-
-    <!-- tab-panel -->
-    <view class="tab__content-wrap" style="border-top: 2rpx solid {{lineColor}}; {{fullScreen? 'height: 100%;': ''}}">
-      <view class="tab__content" style="{{fullScreen? 'height: 100%;': ''}}">
-        <slot></slot>
-      </view>
-    </view>
 
   </view>
 </template>
@@ -53,12 +42,12 @@ import wepy from 'wepy'
 
 export default class JDTab extends wepy.component {
   props = {
+    type: {
+      type: String,
+      default: 'simple'
+    },
     tabs: {
       type: Array
-    },
-    fullScreen: {
-      type: Boolean,
-      default: false
     },
     defaultIndex: {
       type: Number,
@@ -90,9 +79,7 @@ export default class JDTab extends wepy.component {
   }
   data = {
     activeIndex: 0,
-    type: 'simple',
-    scrollX: true,
-    move: 0
+    scrollX: true
   }
   onLoad() {
     this.activeIndex = this.defaultIndex

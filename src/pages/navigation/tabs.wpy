@@ -1,25 +1,57 @@
 <template>
   <view class='navbar-page'>
-    <JoyTabs1
-      :tabs.sync="tabs"
-      :width.sync="width1"
-    >
-    </JoyTabs1>
+
+    <view>
+      基础tab组件
+      <JoyTabs1
+        :tabs.sync="tabs"
+        :width.sync="width1"
+      >
+      </JoyTabs1>
+    </view>
+    <view>
+      高级tab组件
+      <JoyTabs2
+        :tabs.sync="tabs"
+        :type.sync="tabType2"
+      >
+        <view slot="tabList" class="complex-tab">
+          <repeat for="{{tabs}}" key="index" index="index" item="tab">
+            <JoyTabLabel :tab.sync="tab" :tabIndex.sync="index">
+              <view class="demo-tab__label">
+                <icon type="success" size="16"
+                  color="{{ activeKey2 === index ? '#ff5777' : '#555' }}"
+                >
+                </icon>
+                <view class="demo-tab__text {{ activeKey === index ? 'demo-tab--active' : ''}}">
+                  {{tab.label}}
+                </view>
+              </view>
+            </JoyTabLabel>
+          </repeat>
+        </view>
+      </JoyTabs2>
+    </view>
   </view>
 </template>
 <script>
 import wepy from 'wepy'
 import JoyTabs from '@/components/tabs/index'
+import JoyTabLabel from '@/components/tabs/label'
 
 export default class TabsPage extends wepy.page {
   config = {
     navigationBarTitleText: 'Tabs'
   }
   components = {
-    JoyTabs1: JoyTabs
+    JoyTabs1: JoyTabs,
+    JoyTabs2: JoyTabs,
+    JoyTabLabel
   }
   data = {
     width1: 200,
+    activeKey2: 0,
+    tabType2: 'complex',
     tabs: [
       {label: '选项一', key: '内容一'},
       {label: '选项二', key: '内容二'},
@@ -28,6 +60,11 @@ export default class TabsPage extends wepy.page {
       {label: '选项五', key: '内容五'},
       {label: '选项六', key: '内容六'}
     ]
+  }
+  events = {
+    tabchange(index) {
+      this.activeKey2 = index
+    }
   }
   methods = {
     runcount() {
@@ -41,6 +78,23 @@ export default class TabsPage extends wepy.page {
 </script>
 <style lang="less" scoped>
 .navbar-page {
-
+  .complex-tab {
+    width: 750rpx;
+    display: flex;
+    justify-content: space-between;
+  }
+  .demo-tab__label {
+    width: 200rpx;
+    margin: 20rpx 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  };
+  .demo-tab__text {
+    margin-left: 8rpx;
+  };
+  .demo-tab--active {
+    color: #ff5777;
+  };
 }
 </style>
