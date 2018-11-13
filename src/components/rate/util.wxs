@@ -1,0 +1,10 @@
+module.exports = {
+  starCls: function(prefixCls, value, index) {
+    var full = false
+    if (value > index) full = true
+    var strBase = prefixCls + '-star-chart '
+    var strFull = strBase + prefixCls + '-star-full '
+    if (full) return strFull
+    return strBase
+  }
+}

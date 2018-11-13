@@ -22,7 +22,8 @@ export default class extends wepy.app {
       'pages/action/toast',
       'pages/action/comment',
       'pages/navigation/navbar',
-      'pages/navigation/tabs'
+      'pages/navigation/tabs',
+      'pages/form/rate'
     ],
     window: {
       backgroundTextStyle: 'light',

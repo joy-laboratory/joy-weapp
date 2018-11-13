@@ -1,0 +1,115 @@
+<template>
+  <view class="joy-rate" style="{{sizeStyle}}">
+    <repeat for="{{count}}" key="index" index="index" item="item">
+      <view style="display: inline-block">
+        <view class="{{utils.starCls(prefixCls, value, index)}}">
+          <text class="{{prefixCls}}-content" type="half"></text>
+        </view>
+      </view>
+    </repeat>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import utils from './util.wxs'
+export default class JoyRate extends wepy.component {
+  props = {
+    count: {
+      type: Number,
+      default: 5
+    },
+    value: {
+      type: Number,
+      default: 0
+    },
+    allowHalf: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    showText: {
+      type: Boolean,
+      default: false
+    },
+    character: {
+      type: String,
+      default: ''
+    },
+    size: {
+      type: [Number, String],
+      default: 48
+    }
+  }
+  data = {
+    prefixCls: 'joy-rate'
+  }
+  computed = {
+    sizeStyle() {
+      return `font-size: ${this.size}rpx`;
+    }
+  }
+  wxs = {
+    utils: utils
+  }
+  methods = {}
+}
+</script>
+<style lang="less" scoped>
+@import "../../style/theme/default.less";
+@import '../icon/index.less';
+.joy-rate {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-size: 40rpx;
+  vertical-align: middle;
+  font-weight: normal;
+  font-style: normal;
+
+  .joy-rate-star-full,
+  .joy-rate-star-zero {
+    position: relative;
+  }
+  .joy-rate-star-chart {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-right: 16rpx;
+    position: relative;
+    font-family: 'iconfont';
+    transition: all 0.3s ease;
+    &::before,
+    .joy-rate-content::before {
+      color: #e9e9e9;
+      cursor: pointer;
+      content: '\e94d';
+      transition: all @transition-time @ease-in-out;
+      display: block;
+    }
+    .joy-rate-content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  .joy-rate-star-full {
+    .joy-rate-content::before {
+      color: @rate-star-color;
+    }
+  }
+  .joy-rate-star-chart.joy-rate-star-full {
+    color: @rate-star-color;
+    opacity: 1;
+  }
+  .joy-rate-star-chart.joy-rate-star-half {
+    opacity: 1;
+    color: @rate-star-color;
+  }
+}
+</style>

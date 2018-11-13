@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -57,7 +57,13 @@
 				{
 					"id": -1,
 					"name": "滑动操作",
-					"pathName": "pages/action/swipe-action"
+					"pathName": "pages/action/swipe-action",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评分",
+					"pathName": "pages/form/rate"
 				}
 			]
 		}

@@ -2,24 +2,14 @@
   <view class='page'>
     <view class='doc-body'>
       <view class='panel'>
-        <view class='panel-title'>基础</view>
+        <view class='panel-title'>基本</view>
         <view class='panel-content'>
           <view class='badge-item'>
             <view class='subitem'>
-              <JoyIcon1 value="icon-add" color="#ccc"/>
+              <JoyRate1 :value.sync="value1"></JoyRate1>
             </view>
             <view class='subitem'>
-              <JoyIcon2 value="icon-subtract"/>
-            </view> 
-            <view class='subitem'>
-              <JoyIcon3 value="icon-align-right"/>
-            </view> 
-            <view class='subitem'>
-              <JoyIcon4 value="icon-bell"/>
-            </view> 
-            <view class='subitem'>
-              <JoyIcon5 value="icon-bullet-list"/>
-            </view>
+              <JoyRate2 :value.sync="value2"></JoyRate2>
             </view>
           </view>
         </view>
@@ -29,17 +19,18 @@
 </template>
 <script>
 import wepy from 'wepy'
-import JoyIcon from '@/components/icon/index'
-export default class IconPage extends wepy.page {
+import JoyRate from '@/components/rate/index'
+export default class RatePage extends wepy.page {
   config = {
-    navigationBarTitleText: 'Icon 图标'
+    navigationBarTitleText: 'Rate 评分'
   }
   components = {
-    JoyIcon1: JoyIcon,
-    JoyIcon2: JoyIcon,
-    JoyIcon3: JoyIcon,
-    JoyIcon4: JoyIcon,
-    JoyIcon5: JoyIcon
+    JoyRate1: JoyRate,
+    JoyRate2: JoyRate
+  }
+  data = {
+    value1: 0,
+    value2: 3
   }
 }
 </script>
