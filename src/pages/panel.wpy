@@ -88,6 +88,10 @@ export default class PanelPage extends wepy.page {
         {
           id: 'Divider',
           name: '分割线'
+        },
+        {
+          id: 'Icon',
+          name: '图标'
         }
       ],
       Action: [

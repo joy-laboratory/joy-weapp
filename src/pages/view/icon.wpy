@@ -1,0 +1,69 @@
+<template>
+  <view class='page'>
+    <view class='doc-body'>
+      <view class='panel'>
+        <view class='panel-title'>基础</view>
+        <view class='panel-content'>
+          <view class='badge-item'>
+            <view class='subitem'>
+              <JoyIcon1 value="icon-add"/>
+            </view>
+            <view class='subitem'>
+              <JoyIcon2 value="icon-subtract"/>
+            </view> 
+            <view class='subitem'>
+              <JoyIcon3 value="icon-align-right"/>
+            </view> 
+            <view class='subitem'>
+              <JoyIcon4 value="icon-bell"/>
+            </view> 
+            <view class='subitem'>
+              <JoyIcon5 value="icon-bullet-list"/>
+            </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import JoyIcon from '@/components/icon/index'
+export default class IconPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Icon 图标'
+  }
+  components = {
+    JoyIcon1: JoyIcon,
+    JoyIcon2: JoyIcon,
+    JoyIcon3: JoyIcon,
+    JoyIcon4: JoyIcon,
+    JoyIcon5: JoyIcon
+  }
+}
+</script>
+<style lang="less" scoped>
+.page {
+  .view-wrap {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    font-size:38rpx;
+    font-weight:600;
+    color:#2d8cf0;
+  }
+  .panel-content {
+    .badge-item {
+      margin-bottom: 20rpx;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .subitem {
+        display: inline-block;
+        margin-left: 40rpx;
+      }
+    }
+  }
+}
+</style>

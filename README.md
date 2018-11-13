@@ -29,6 +29,7 @@ npm run dev:doc
 - [x] Tag 标签
 - [x] WaterMark 水印
 - [x] Divider 分割线
+- [x] Icon 图标
 
 #### Action 操作反馈（包含对话框、进度条、动作面板等）
 

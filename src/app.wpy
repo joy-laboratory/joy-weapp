@@ -11,6 +11,7 @@ export default class extends wepy.app {
       'pages/view/tag',
       'pages/view/water-mark',
       'pages/view/divider',
+      'pages/view/icon',
       'pages/action/action-sheet',
       'pages/action/modal',
       'pages/action/progress',
