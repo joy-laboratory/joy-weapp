@@ -58,7 +58,6 @@ npm run dev:doc
 #### Other 其他（包含回到顶部、分割线等）
 
 - [ ] Backtop 回到顶部
-- [ ] Divider 分割线
 - [ ] Table 表格
 - [x] Countdown 倒计时
 

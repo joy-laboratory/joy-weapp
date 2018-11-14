@@ -2,12 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
+import gaui from './assets/lib/gaui';
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.use(gaui)
 
 import 'highlight.js/styles/github-gist.css'
 import './assets/style/doc.less'
+import './assets/lib/styles/gaui.css'
+import './assets/lib/ga-iconfont'
 
 // ie11 兼容vue-router
 if (
