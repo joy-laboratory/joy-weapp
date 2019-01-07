@@ -1,7 +1,7 @@
 <template>
   <view class="joy-divider-wrap">
     <text class="joy-divider-left" style="width: {{leftLineWidth}}; border-top: 2rpx solid {{leftLineColor}};"></text>
-    <text class="joy-divider-txt">{{text}}</text>
+    <text class="joy-divider-txt" style="font-size: {{size}}rpx;">{{text}}</text>
     <text class="joy-divider-right" style="width: {{rightLineWidth}}; border-top: 2rpx solid {{rightLineColor}};"></text>
   </view>
 </template>
@@ -28,6 +28,10 @@ export default class JoyDivider extends wepy.component {
     rightLineColor: {
       type: String,
       default: '#f3f3f5'
+    },
+    size: {
+      type: String,
+      default: '26'
     }
   };
 }
@@ -50,7 +54,6 @@ export default class JoyDivider extends wepy.component {
     font-family:PingFangSC-Regular;
     font-weight:400;
     color:#4F4F4F;
-    font-size: 26rpx;
     margin: 0 20rpx;
   }
 }
