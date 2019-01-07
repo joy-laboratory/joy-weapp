@@ -1,8 +1,8 @@
 <template>
   <view class="joy-divider-wrap">
-    <text class="joy-divider-left" style="width: 12%"></text>
+    <text class="joy-divider-left" style="width: {{leftLineWidth}}; border-top: 2rpx solid {{leftLineColor}};"></text>
     <text class="joy-divider-txt">{{text}}</text>
-    <text class="joy-divider-right" style="width: 12%"></text>
+    <text class="joy-divider-right" style="width: {{rightLineWidth}}; border-top: 2rpx solid {{rightLineColor}};"></text>
   </view>
 </template>
 <script>
@@ -12,6 +12,22 @@ export default class JoyDivider extends wepy.component {
     text: {
       type: String,
       default: ''
+    },
+    leftLineWidth: {
+      type: String,
+      default: '12%'
+    },
+    leftLineColor: {
+      type: String,
+      default: '#f3f3f5'
+    },
+    rightLineWidth: {
+      type: String,
+      default: '12%'
+    },
+    rightLineColor: {
+      type: String,
+      default: '#f3f3f5'
     }
   };
 }
@@ -27,7 +43,6 @@ export default class JoyDivider extends wepy.component {
     display: inline-block;
     position: relative;
     width: 50%;
-    border-top: 2rpx solid #f3f3f5;
     height: 2rpx;
     vertical-align: middle;
   }
